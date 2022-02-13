@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="">
+  <title>【NoneBot2】第一章：安装并配置你的机器人及常见报错的解决方法 | Well404的妙妙屋</title>
+  <meta name="author" content="Well404" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="NoneBot2" />
+  
+  <meta name="description" content="由于环境安装的内容较为抽象，安装的步骤较为繁琐，建议观看视频教程。本节将会着重介绍常见错误的解决方法。 本章节仅会针对视频中未指出的内容进行补充与拓展，将不会重复已经在视频中提及的内容。 如果你需要提问，请看这里首先，你需要知道的是，这是个开源项目，这篇文章是你免费观看的，nonebot群是你免费加的，没有任何一个开发者和回答问题的人从你这拿走了一分钱。所以，没人对你负有责任，也没人对你有回答问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【NoneBot2】第一章：安装并配置你的机器人及常见报错的解决方法">
+<meta property="og:url" content="http://blog.well404.top/2022/02/02/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Well404的妙妙屋">
+<meta property="og:description" content="由于环境安装的内容较为抽象，安装的步骤较为繁琐，建议观看视频教程。本节将会着重介绍常见错误的解决方法。 本章节仅会针对视频中未指出的内容进行补充与拓展，将不会重复已经在视频中提及的内容。 如果你需要提问，请看这里首先，你需要知道的是，这是个开源项目，这篇文章是你免费观看的，nonebot群是你免费加的，没有任何一个开发者和回答问题的人从你这拿走了一分钱。所以，没人对你负有责任，也没人对你有回答问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.well404.top/null">
+<meta property="article:published_time" content="2022-02-02T13:11:07.000Z">
+<meta property="article:modified_time" content="2022-02-13T16:27:18.922Z">
+<meta property="article:author" content="Well404">
+<meta property="article:tag" content="NoneBot2">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.well404.top/null">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">博客主题の作者</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">博客主题の项目</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Well404的妙妙屋</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Well404的妙妙屋</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">【NoneBot2】第一章：安装并配置你的机器人及常见报错的解决方法</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2022-02-02</li>
+                <li><i class="fa fa-user"></i> 作者 Well404</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~4.27K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                本文最后编辑于 <time datetime="1644769638922"></time> 前，其中的内容可能需要更新。
+            </div>
+            
+                <div class="kratos-post-inner-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8F%90%E9%97%AE%EF%BC%8C%E8%AF%B7%E7%9C%8B%E8%BF%99%E9%87%8C"><span class="toc-number">1.</span> <span class="toc-text">如果你需要提问，请看这里</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E6%8F%90%E9%97%AE"><span class="toc-number">1.1.</span> <span class="toc-text">错误的提问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VSCode%E7%9A%84%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E8%AF%AF%E5%8C%BA"><span class="toc-number">2.</span> <span class="toc-text">VSCode的常见使用误区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E8%B7%AF%E5%BE%84%E9%94%99%E8%AF%AF"><span class="toc-number">2.1.</span> <span class="toc-text">工作路径错误</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%89%B9%E5%BE%81"><span class="toc-number">2.1.0.1.</span> <span class="toc-text">错误特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.0.2.</span> <span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%951"><span class="toc-number">2.1.0.2.1.</span> <span class="toc-text">解决方法1</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952"><span class="toc-number">2.1.0.2.2.</span> <span class="toc-text">解决方法2</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%953%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.1.0.2.3.</span> <span class="toc-text">解决方法3（推荐）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%954%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.1.0.2.4.</span> <span class="toc-text">解决方法4（推荐）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%955%EF%BC%88%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.1.0.2.5.</span> <span class="toc-text">解决方法5（强烈推荐）</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">常见报错的解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nonebot%E4%B8%8Egocqhttp%E6%97%A0%E6%B3%95%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.1.</span> <span class="toc-text">nonebot与gocqhttp无法建立连接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B1%E4%BA%8Enonebot%E6%9C%AA%E5%90%AF%E5%8A%A8%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.1.1.</span> <span class="toc-text">由于nonebot未启动导致无法连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E5%8F%B7%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="toc-number">3.1.2.</span> <span class="toc-text">端口号不一致</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gocq%E4%B8%ADws%E5%9C%B0%E5%9D%80%E5%A1%AB%E5%86%99%E9%94%99%E8%AF%AF"><span class="toc-number">3.1.3.</span> <span class="toc-text">gocq中ws地址填写错误</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%AF%BC%E5%85%A5%E6%8F%92%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">无法正常导入插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B1%E4%BA%8Ebeta1%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E5%AF%BC%E8%87%B4%E7%9A%84%E6%8F%92%E4%BB%B6%E4%B8%8D%E5%85%BC%E5%AE%B9"><span class="toc-number">3.2.1.</span> <span class="toc-text">由于beta1版本升级导致的插件不兼容</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%89%B9%E5%BE%81-1"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">错误特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-1"><span class="toc-number">3.2.1.2.</span> <span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%82%AC%E4%BD%9C%E8%80%85%E6%9B%B4%E6%96%B0%E9%80%82%E9%85%8D%EF%BC%88%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">3.2.1.2.1.</span> <span class="toc-text">催作者更新适配（强烈推荐）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E7%89%88%E6%9C%AC%E5%B7%AE%E5%BC%82%E6%89%8B%E5%8A%A8%E9%80%82%E9%85%8D"><span class="toc-number">3.2.1.2.2.</span> <span class="toc-text">根据版本差异手动适配</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E9%A3%8E%E6%8E%A7"><span class="toc-number">3.3.</span> <span class="toc-text">账号风控</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%89%B9%E5%BE%81-2"><span class="toc-number">3.3.0.1.</span> <span class="toc-text">错误特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-number">3.3.0.2.</span> <span class="toc-text">解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%94%B6%E8%B4%AD%E4%BC%81%E9%B9%85%EF%BC%88%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">3.3.0.2.1.</span> <span class="toc-text">收购企鹅（强烈推荐）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8C%82%E4%B8%80%E4%BC%9A%E5%84%BF%E8%AF%95%E8%AF%95"><span class="toc-number">3.3.0.2.2.</span> <span class="toc-text">挂一会儿试试</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BC%81%E4%B8%9A%E8%B4%A6%E5%8F%B7"><span class="toc-number">3.3.0.2.3.</span> <span class="toc-text">企业账号</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8D%A2%E4%B8%AA%E5%8F%B7"><span class="toc-number">3.3.0.2.4.</span> <span class="toc-text">换个号</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <p>由于环境安装的内容较为抽象，安装的步骤较为繁琐，建议观看<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aZ4y1f7e2">视频教程</a>。本节将会着重介绍常见错误的解决方法。</p>
+<p>本章节仅会针对视频中未指出的内容进行补充与拓展，将不会重复已经在视频中提及的内容。</p>
+<h2 id="如果你需要提问，请看这里"><a href="#如果你需要提问，请看这里" class="headerlink" title="如果你需要提问，请看这里"></a>如果你需要提问，请看这里</h2><p>首先，你需要知道的是，这是个开源项目，这篇文章是你免费观看的，nonebot群是你免费加的，没有任何一个开发者和回答问题的人从你这拿走了一分钱。所以，没人对你负有责任，也没人对你有回答问题的义务。<img src="./pics/2_0_2.jpg"></p>
+<p>所有人都从新手过来的，自然也不会无理由拒绝一个新人的提问，不过你的态度和提问方法决定了你的提问成功率，所以我在此不负责任的提供一些提高提问成功率的方法：</p>
+<ol start="0">
+<li><strong>最重要</strong>的是<strong>端正你的态度</strong>，用相对温和的方式进行提问，富有耐心。</li>
+<li>妥善保留 <strong>问题发生时</strong> 的nonebot日志以及gocq日志，要能清晰的看到错误信息，如果不知道哪里是错误信息就全都保留下来。<img src="./pics/2_0.jpg"></li>
+<li>使用qq截图 (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>A</kbd>) 或Windows自带的截图 (<kbd>Win</kbd>+<kbd>PrtSc</kbd>) 或其他截图工具进行截图，切勿使用手机拍屏<img src="./pics/2_0_1.jpg"></li>
+<li>尽量详细的描述是什么样的问题，而不是“大佬我这机器人出错了”就完了。<img src="./pics/2_0_3.png"></li>
+</ol>
+<h3 id="错误的提问"><a href="#错误的提问" class="headerlink" title="错误的提问"></a>错误的提问</h3><ol>
+<li><p>救命啊大佬我这个机器人没反应怎么办啊？（同时不提供任何其他说明和信息）</p>
+<blockquote>
+<p>没有提供日志和截图、也没有详细的描述</p>
+</blockquote>
+</li>
+<li><p>这群里没个活人吗，我这机器人打不开了！</p>
+<blockquote>
+<p>理由同上，不过就算把其他信息补全了我也不会进行任何回答的，态度过于恶劣</p>
+</blockquote>
+</li>
+<li><p>私聊：大佬你看看我这机器人怎么回事？</p>
+<blockquote>
+<p>私聊提问是非常不礼貌的且占用对方时间的行为，大佬回你了是他脾气好，像我这种暴躁老弟一般就不理你了，要是翻来覆去骚扰的话反而会骂你加拉黑。<br>除非对方明确提出私聊，否则不要轻易私聊提问！！！</p>
+</blockquote>
+</li>
+<li><p>我觉得xxxx，所以我这机器人报错了怎么改？不过你说的不对，我觉得就是xxxxx……</p>
+<blockquote>
+<p>自以为是型选手，自己出了问题解决不了来求助，但是不按照大佬的解决方法走，有一套自己的想法，这种人我建议还是自己去研究吧，唯心主义没人救得了。</p>
+</blockquote>
+</li>
+<li><p>大佬你看看我这个机器人xxx报错了，这个是截图（截图之截了非常小一行）</p>
+<blockquote>
+<p>要提问就别怕截图，群友要你的隐私有啥用？这种提问方式不仅和第一种一样没有效率，而且还会更加消磨他人的耐心。</p>
+</blockquote>
+</li>
+<li><p>大佬看看我这个问题吧！（此前已经刷了n多次）</p>
+<blockquote>
+<p>没人回答的情况，你应该首先检查自己的提问方法有无问题，提没提供完整的资料。<br>如果你已经完整提供了截图和说明，那么此时应该是没有人能解答你的问题，可以过段时间大佬来水群了再试，而不是一直刷，这样容易被禁言或直接飞机票</p>
+</blockquote>
+</li>
+<li><p>大佬我这个机器人……(提了一个<strong>重复了无数次</strong>的问题)</p>
+<blockquote>
+<p>遇到问题先去尝试自己解决！看看文档和教程，翻翻历史记录，把报错代码粘到浏览器里面搜一下，不会怀孕的！不要一出问题就来问个不停，除非你给个大佬打个红包让他一对一教你，不然再有耐心都会被消磨殆尽的。</p>
+</blockquote>
+</li>
+<li><p>把你的机器人打包发我一份谢谢</p>
+<blockquote>
+<p>伸手党型，自己一点脑子也不愿意动，我觉得这种人也不会来看这篇文章的，希望你不是。</p>
+</blockquote>
+</li>
+<li><p>待补充，如果之后有啥能让我血压飙升的提问我会在这里补充的</p>
+</li>
+</ol>
+<h2 id="VSCode的常见使用误区"><a href="#VSCode的常见使用误区" class="headerlink" title="VSCode的常见使用误区"></a>VSCode的常见使用误区</h2><h3 id="工作路径错误"><a href="#工作路径错误" class="headerlink" title="工作路径错误"></a>工作路径错误</h3><p>由于vscode默认会自动合并窗口，而部分情况下（例如第一个打开的窗口是工作区）会导致工作路径与实际路径不符，导致依赖于相对路径的程序找不到对应的文件，产生报错。</p>
+<h5 id="错误特征"><a href="#错误特征" class="headerlink" title="错误特征"></a>错误特征</h5><p>报错内容为 <code>FileNotFoundError: [Errno 2] No such file or directory: &#39;xxxxx&#39;</code> 。其中xxxxx可以是任意你确定没有丢失的文件的名字，例如 <code>pyproject.toml</code> 。</p>
+<p>核实方法也很简单，在使用 <code>nb run</code> 指令不报错的情况下，使用vscode却出现这样的报错一般情况下就是工作路径错误。</p>
+<p>或者，我们可以在 <code>bot.py</code> 的最开始处中添加如下代码，然后检查输出的两个路径是否一致。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;&#x27;&#x27;current_path : <span class="subst">&#123;os.getcwd()&#125;</span>\</span></span><br><span class="line"><span class="string">        \nright_path   : <span class="subst">&#123;__file__.rstrip(os.path.basename(__file__))&#125;</span>&#x27;&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h5><p>解决该问题的方法无非两种，一是正确的设置工作路径，二是在程序内将错误的路径改正即可。</p>
+<h6 id="解决方法1"><a href="#解决方法1" class="headerlink" title="解决方法1"></a>解决方法1</h6><p>在目标文件夹内，右键空白区域，选择使用code打开，然后再次运行即可。<br><img src="./pics/2_1.jpg"></p>
+<h6 id="解决方法2"><a href="#解决方法2" class="headerlink" title="解决方法2"></a>解决方法2</h6><p>关掉目前vscode的全部窗口（最小化的也要关掉），然后再打开 <code>bot.py</code> 。</p>
+<h6 id="解决方法3（推荐）"><a href="#解决方法3（推荐）" class="headerlink" title="解决方法3（推荐）"></a>解决方法3（推荐）</h6><p>按照下图方式，设置新建窗口（从off改为on或者default），这个操作可以一劳永逸的解决这类问题。<br><img src="./pics/2_2.jpg"></p>
+<h6 id="解决方法4（推荐）"><a href="#解决方法4（推荐）" class="headerlink" title="解决方法4（推荐）"></a>解决方法4（推荐）</h6><p>若非开发插件或调试插件，可以直接使用 <code>nb run</code> 命令开启。</p>
+<h6 id="解决方法5（强烈推荐）"><a href="#解决方法5（强烈推荐）" class="headerlink" title="解决方法5（强烈推荐）"></a>解决方法5（强烈推荐）</h6><p>在 <code>bot.py</code> 的 <strong>最开始</strong> 添加如下代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">right_path = __file__.rstrip(os.path.basename(__file__))    <span class="comment"># 获取当前文件的所在路径</span></span><br><span class="line">os.chdir(right_path)    <span class="comment"># 将工作路径改至目标路径</span></span><br></pre></td></tr></table></figure>
+<p>这段代码可以提取bot.py所在的文件夹的位置，并且将工作路径改到该文件夹，相对于上述方法，此方法不仅可以跨平台，也适用于其他python脚本（不止nonebot可用）。</p>
+<h2 id="常见报错的解决方法"><a href="#常见报错的解决方法" class="headerlink" title="常见报错的解决方法"></a>常见报错的解决方法</h2><p>此节将会持续收录常见的报错以及其解决方法。</p>
+<h3 id="nonebot与gocqhttp无法建立连接"><a href="#nonebot与gocqhttp无法建立连接" class="headerlink" title="nonebot与gocqhttp无法建立连接"></a>nonebot与gocqhttp无法建立连接</h3><blockquote>
+<p>强烈推荐使用 nonebot-plugin-gocqhttp 插件来构建nonebot与gocq的连接。<br>项目仓库 <a target="_blank" rel="noopener" href="https://github.com/mnixry/nonebot-plugin-gocqhttp">https://github.com/mnixry/nonebot-plugin-gocqhttp</a><br>使用教程 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1xS4y1y7kp">https://www.bilibili.com/video/BV1xS4y1y7kp</a></p>
+</blockquote>
+<h4 id="由于nonebot未启动导致无法连接"><a href="#由于nonebot未启动导致无法连接" class="headerlink" title="由于nonebot未启动导致无法连接"></a>由于nonebot未启动导致无法连接</h4><p>这个就不细说了，自己去找仔细看文章开头的视频，看看哪步出错了，哪个该打开的窗口打不开。</p>
+<h4 id="端口号不一致"><a href="#端口号不一致" class="headerlink" title="端口号不一致"></a>端口号不一致</h4><blockquote>
+<p>注：本小节中出现的“这里是端口号”处，均为一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%AB%AF%E5%8F%A3%E5%8F%B7/10883658">端口号</a>，也就是一个0-65535的数字，在复制粘贴的时候请务必把此处换成合法的端口号</p>
+</blockquote>
+<p>这个错误在gocq端的报错和上个问题一致，均为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[WARNING]: 连接到反向WebSocket Universal服务器 ws://127.0.0.1:这里是端口号/onebot/v11/ws/ 时出现错误: dial tcp 127.0.0.1:这里是端口号: connectex: No connection could be made because the target machine actively refused it.</span><br></pre></td></tr></table></figure>
+
+<p>与其不同的是，此时nonebot会有如下提示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[INFO] uvicorn | Uvicorn running on http://127.0.0.1:这里是另一个端口号 (Press CTRL+C to quit)</span><br></pre></td></tr></table></figure>
+
+<p>上下文中的端口号并不一致，导致无法成功握手</p>
+<p>解决方法就是修改 <code>.env</code> 中的端口号，与gocq的端口号一致即可（具体怎么改去看视频演示）</p>
+<h4 id="gocq中ws地址填写错误"><a href="#gocq中ws地址填写错误" class="headerlink" title="gocq中ws地址填写错误"></a>gocq中ws地址填写错误</h4><blockquote>
+<p>注：本小节中出现的“这里是端口号”处，均为一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%AB%AF%E5%8F%A3%E5%8F%B7/10883658">端口号</a>，也就是一个0-65535的数字，在复制粘贴的时候请务必把此处换成合法的端口号</p>
+</blockquote>
+<p>这个问题暂时较为常见（2022年初），因为nonebot2发布新版本（beta1）后，ws地址发生了改变，具体如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#旧版</span><br><span class="line">ws://127.0.0.1:这里是端口号/cqhttp/ws/</span><br><span class="line">#新版</span><br><span class="line">ws://127.0.0.1:这里是端口号/onebot/v11/ws/</span><br></pre></td></tr></table></figure>
+
+<p>此问题导致的错误在gocq端的报错为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[WARNING]: 连接到反向WebSocket Universal服务器 ws://127.0.0.1:这里是端口号/cqhttp/ws/ 时出现错误: websocket: bad handshake</span><br></pre></td></tr></table></figure>
+
+<p>此问题导致的错误在nb2端的报错为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[INFO] uvicorn | (&#x27;127.0.0.1&#x27;, 3941) - &quot;WebSocket /cqhttp/ws/&quot; 403</span><br></pre></td></tr></table></figure>
+
+<p>解决办法是将gocq的 <code>config.yml</code> 文件中的旧版地址替换为新版地址，也就是将 <code>cqhttp</code> 替换为 <code>onebot/v11</code> 。<br><img src="./pics/2_3.png"><br>同时，造成该问题的也有可能是端口号冲突，在确保ws地址一致情况下，如还发生此问题，请更换一个较为不常见的端口号，例如10000-60000内的一个<strong>随机数</strong>，且避免23333、x8888、x0022这种具有特殊含义的数。</p>
+<h3 id="无法正常导入插件"><a href="#无法正常导入插件" class="headerlink" title="无法正常导入插件"></a>无法正常导入插件</h3><h4 id="由于beta1版本升级导致的插件不兼容"><a href="#由于beta1版本升级导致的插件不兼容" class="headerlink" title="由于beta1版本升级导致的插件不兼容"></a>由于beta1版本升级导致的插件不兼容</h4><h5 id="错误特征-1"><a href="#错误特征-1" class="headerlink" title="错误特征"></a>错误特征</h5><p>通常在nonebot端输出如下报错 <code>ModuleNotFoundError: No module named &#39;nonebot.adapters.cqhttp&#39;</code>，也可能产生其他的报错信息，不过此报错是最常见的。</p>
+<h5 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a>解决方法</h5><h6 id="催作者更新适配（强烈推荐）"><a href="#催作者更新适配（强烈推荐）" class="headerlink" title="催作者更新适配（强烈推荐）"></a>催作者更新适配（强烈推荐）</h6><p>此方法是最优解，不多解释。<br>不过，记得使用正规渠道（例如github issue）进行合理友善的催更，而不要去骚扰作者。<br>对于弃坑或暂时无法进行适配的作者也要体谅与理解，有能力的话可以给源码进行pr，帮助作者进行适配。</p>
+<h6 id="根据版本差异手动适配"><a href="#根据版本差异手动适配" class="headerlink" title="根据版本差异手动适配"></a>根据版本差异手动适配</h6><p>在无法催作者更新适配的情况下，可以根据视频中的方法进行简易修改，或参照 <em><strong><a target="_blank" rel="noopener" href="https://github.com/nonebot/discussions/discussions/74">这个讨论</a></strong></em> 进行修改。</p>
+<blockquote>
+<p>如果你修改成功了，可以尝试将修改后的代码提交给原作者进行更新哦。</p>
+</blockquote>
+<h3 id="账号风控"><a href="#账号风控" class="headerlink" title="账号风控"></a>账号风控</h3><p>是企鹅针对第三方机器人的打压行为，为强推自家功能少得可怜而且根本没开放的机器人，以及遏制使用QQ机器人的黑灰产的的一种限制机器人行为的措施，目前呈加剧态势。</p>
+<h5 id="错误特征-2"><a href="#错误特征-2" class="headerlink" title="错误特征"></a>错误特征</h5><p>在gocq端出现如下提示：<code>[WARNING]: 群消息发送失败: 账号可能被风控.</code> </p>
+<h5 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h5><h6 id="收购企鹅（强烈推荐）"><a href="#收购企鹅（强烈推荐）" class="headerlink" title="收购企鹅（强烈推荐）"></a>收购企鹅（强烈推荐）</h6><p>你收购企鹅之后，自然就不会有人来风控和冻结你的QQ号了，还能在家躺着赚钱，岂不美哉。</p>
+<h6 id="挂一会儿试试"><a href="#挂一会儿试试" class="headerlink" title="挂一会儿试试"></a>挂一会儿试试</h6><p>万一企鹅大发慈悲给你解除风控了呢</p>
+<h6 id="企业账号"><a href="#企业账号" class="headerlink" title="企业账号"></a>企业账号</h6><p>企业账号是不会风控的，就是开通费有亿点点贵。</p>
+<h6 id="换个号"><a href="#换个号" class="headerlink" title="换个号"></a>换个号</h6><p>换个qq号吧，就当续命了</p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://blog.well404.top/2022/02/02/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://blog.well404.top/2022/02/02/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/";
+            const title         = "「【NoneBot2】第一章：安装并配置你的机器人及常见报错的解决方法」";
+            const excerpt       = `由于环境安装的内容较为抽象，安装的步骤较为繁琐，建议观看视频教程。本节将会着重介绍常见错误的解决方法。
+本章节仅会针对视频中未指出的内容进行补充与拓展，将不会重复已经在视频中提及的内容。
+如果你需要提问，请看这里首先，你需要知道的是，...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/NoneBot2/" rel="tag">NoneBot2</a>
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2022-02-14</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 【NoneBot2】前言——使用NoneBot2搭建QQ机器人" href="/2022/01/30/nonebot/【NoneBot2】前言——使用NoneBot2搭建QQ机器人/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" 【NoneBot2】第二章：基础插件编写指南第一节———前置知识" href="/2022/02/11/nonebot/【NoneBot2】第二章：基础插件编写指南第一节———前置知识/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E6%9E%9C%E4%BD%A0%E9%9C%80%E8%A6%81%E6%8F%90%E9%97%AE%EF%BC%8C%E8%AF%B7%E7%9C%8B%E8%BF%99%E9%87%8C"><span class="toc-text">如果你需要提问，请看这里</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E6%8F%90%E9%97%AE"><span class="toc-text">错误的提问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VSCode%E7%9A%84%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E8%AF%AF%E5%8C%BA"><span class="toc-text">VSCode的常见使用误区</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E8%B7%AF%E5%BE%84%E9%94%99%E8%AF%AF"><span class="toc-text">工作路径错误</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%89%B9%E5%BE%81"><span class="toc-text">错误特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%951"><span class="toc-text">解决方法1</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%952"><span class="toc-text">解决方法2</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%953%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">解决方法3（推荐）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%954%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">解决方法4（推荐）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%955%EF%BC%88%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">解决方法5（强烈推荐）</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-text">常见报错的解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nonebot%E4%B8%8Egocqhttp%E6%97%A0%E6%B3%95%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5"><span class="toc-text">nonebot与gocqhttp无法建立连接</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B1%E4%BA%8Enonebot%E6%9C%AA%E5%90%AF%E5%8A%A8%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5"><span class="toc-text">由于nonebot未启动导致无法连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E5%8F%B7%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="toc-text">端口号不一致</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gocq%E4%B8%ADws%E5%9C%B0%E5%9D%80%E5%A1%AB%E5%86%99%E9%94%99%E8%AF%AF"><span class="toc-text">gocq中ws地址填写错误</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E5%AF%BC%E5%85%A5%E6%8F%92%E4%BB%B6"><span class="toc-text">无法正常导入插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%B1%E4%BA%8Ebeta1%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7%E5%AF%BC%E8%87%B4%E7%9A%84%E6%8F%92%E4%BB%B6%E4%B8%8D%E5%85%BC%E5%AE%B9"><span class="toc-text">由于beta1版本升级导致的插件不兼容</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%89%B9%E5%BE%81-1"><span class="toc-text">错误特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-1"><span class="toc-text">解决方法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%82%AC%E4%BD%9C%E8%80%85%E6%9B%B4%E6%96%B0%E9%80%82%E9%85%8D%EF%BC%88%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">催作者更新适配（强烈推荐）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E7%89%88%E6%9C%AC%E5%B7%AE%E5%BC%82%E6%89%8B%E5%8A%A8%E9%80%82%E9%85%8D"><span class="toc-text">根据版本差异手动适配</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%A6%E5%8F%B7%E9%A3%8E%E6%8E%A7"><span class="toc-text">账号风控</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%89%B9%E5%BE%81-2"><span class="toc-text">错误特征</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="toc-text">解决办法</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%94%B6%E8%B4%AD%E4%BC%81%E9%B9%85%EF%BC%88%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">收购企鹅（强烈推荐）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8C%82%E4%B8%80%E4%BC%9A%E5%84%BF%E8%AF%95%E8%AF%95"><span class="toc-text">挂一会儿试试</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%BC%81%E4%B8%9A%E8%B4%A6%E5%8F%B7"><span class="toc-text">企业账号</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%8D%A2%E4%B8%AA%E5%8F%B7"><span class="toc-text">换个号</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NoneBot2%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/">NoneBot2系列教程</a><span class="category-list-count">4</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/NoneBot2/" style="font-size: 0.6em;">NoneBot2</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/11/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E4%BA%8C%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E5%90%AC%E5%BE%97%E8%A7%81%EF%BC%8C%E8%AF%B4%E5%BE%97%E5%87%BA/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第二节———听得见，说得出</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/11/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%80%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第一节———前置知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/02/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"><i class="fa  fa-book"></i> 【NoneBot2】第一章：安装并配置你的机器人及常见报错的解决方法</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/01/30/nonebot/%E3%80%90NoneBot2%E3%80%91%E5%89%8D%E8%A8%80%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8NoneBot2%E6%90%AD%E5%BB%BAQQ%E6%9C%BA%E5%99%A8%E4%BA%BA/"><i class="fa  fa-book"></i> 【NoneBot2】前言——使用NoneBot2搭建QQ机器人</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/1970/01/01/hello-world/"><i class="fa  fa-book"></i> Hello World</a>
+            
+          
+        
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:well_404@outlook.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/well2333"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 Well404的妙妙屋 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Well404.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
