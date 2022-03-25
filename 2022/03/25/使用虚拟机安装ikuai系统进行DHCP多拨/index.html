@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  <title>使用虚拟机安装ikuai系统进行DHCP多拨 | Well404的妙妙屋</title>
+  <meta name="author" content="Well404" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="多图警告：本文全部含有45张图片，使用流量时请慎重观看 声明：本文是基于个人经验所撰写，并不一定准确和效率最高，请务必根据实际情况进行调整和部署。同时多拨有可能涉及其他风险，切勿不要盲目多拨，因使用该技术造成的一切后果均需要由您自己承担，请务必慎重使用。 前言及网络环境由于本人所在的宿舍网络免费，自然速度十分的惨不忍睹，连个360P的视频都能卡死，此时的网络拓扑图如下: 由于整栋楼有三百人左右，因">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用虚拟机安装ikuai系统进行DHCP多拨">
+<meta property="og:url" content="http://blog.well404.top/2022/03/25/%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ikuai%E7%B3%BB%E7%BB%9F%E8%BF%9B%E8%A1%8CDHCP%E5%A4%9A%E6%8B%A8/index.html">
+<meta property="og:site_name" content="Well404的妙妙屋">
+<meta property="og:description" content="多图警告：本文全部含有45张图片，使用流量时请慎重观看 声明：本文是基于个人经验所撰写，并不一定准确和效率最高，请务必根据实际情况进行调整和部署。同时多拨有可能涉及其他风险，切勿不要盲目多拨，因使用该技术造成的一切后果均需要由您自己承担，请务必慎重使用。 前言及网络环境由于本人所在的宿舍网络免费，自然速度十分的惨不忍睹，连个360P的视频都能卡死，此时的网络拓扑图如下: 由于整栋楼有三百人左右，因">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.well404.top/images/avatar.webp">
+<meta property="article:published_time" content="2022-03-25T14:02:00.000Z">
+<meta property="article:modified_time" content="2022-03-25T14:07:04.064Z">
+<meta property="article:author" content="Well404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.well404.top/images/avatar.webp">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">博客主题の作者</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">博客主题の项目</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Well404的妙妙屋</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Well404的妙妙屋</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">使用虚拟机安装ikuai系统进行DHCP多拨</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2022-03-25</li>
+                <li><i class="fa fa-user"></i> 作者 Well404</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~2.43K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                本文最后编辑于 <time datetime="1648217224064"></time> 前，其中的内容可能需要更新。
+            </div>
+            
+                <div class="kratos-post-inner-toc">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%E5%8F%8A%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">前言及网络环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%88%9D%E7%9A%84%E5%B0%9D%E8%AF%95%E2%80%94%E2%80%94AP%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">最初的尝试——AP模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%B0%9D%E8%AF%95%E2%80%94%E2%80%94%E5%A4%9A%E6%8B%A8"><span class="toc-number">3.</span> <span class="toc-text">进一步尝试——多拨</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E5%8F%B0%E8%AE%BE%E5%A4%87%E8%8E%B7%E5%8F%96%E5%A4%9A%E4%B8%AAIP"><span class="toc-number">3.1.</span> <span class="toc-text">如何让一台设备获取多个IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9C%89%E6%95%88%E7%9A%84%E5%88%A9%E7%94%A8%E8%BF%99%E4%BA%9BIP%E8%BF%9B%E8%A1%8C%E7%BD%91%E9%80%9F%E6%8F%90%E5%8D%87"><span class="toc-number">3.2.</span> <span class="toc-text">如何有效的利用这些IP进行网速提升</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E6%9C%BA%E8%BD%AF%E8%B7%AF%E7%94%B1%E5%A4%9A%E6%8B%A8"><span class="toc-number">4.</span> <span class="toc-text">实践——物理机软路由多拨</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BD%AF%E8%B7%AF%E7%94%B1%E5%A4%9A%E6%8B%A8"><span class="toc-number">5.</span> <span class="toc-text">实践——虚拟机软路由多拨</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDVMware-Workstation-Pro"><span class="toc-number">5.1.</span> <span class="toc-text">下载VMware Workstation Pro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDikuai%E7%9A%84%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F"><span class="toc-number">5.2.</span> <span class="toc-text">下载ikuai的系统镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85ikuai%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">5.3.</span> <span class="toc-text">在VMware中安装ikuai虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E9%85%8D%E7%BD%AEikuai"><span class="toc-number">5.4.</span> <span class="toc-text">初步配置ikuai</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%E6%9C%AC%E6%9C%BAIP"><span class="toc-number">5.5.</span> <span class="toc-text">手动配置本机IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5webui%EF%BC%8C%E8%BF%9B%E8%A1%8C%E5%A4%9A%E6%8B%A8%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">5.6.</span> <span class="toc-text">进入webui，进行多拨和负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E8%AE%BE%E7%BD%AEDHCP%E6%9C%8D%E5%8A%A1"><span class="toc-number">5.7.</span> <span class="toc-text">（可选）设置DHCP服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%BD%91%E5%85%B3%E8%B7%83%E7%82%B9%E6%95%B0"><span class="toc-number">5.8.</span> <span class="toc-text">设置网关跃点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%8A%9F%E5%91%8A%E6%88%90"><span class="toc-number">5.9.</span> <span class="toc-text">大功告成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <p><strong>多图警告：本文全部含有45张图片，使用流量时请慎重观看</strong></p>
+<p>声明：本文是基于个人经验所撰写，并不一定准确和效率最高，请务必根据实际情况进行调整和部署。同时多拨有可能涉及其他风险，切勿不要盲目多拨，因使用该技术造成的一切后果均需要由<strong>您自己</strong>承担，请务必慎重使用。</p>
+<h2 id="前言及网络环境"><a href="#前言及网络环境" class="headerlink" title="前言及网络环境"></a>前言及网络环境</h2><p>由于本人所在的宿舍网络免费，自然速度十分的惨不忍睹，连个360P的视频都能卡死，此时的网络拓扑图如下:<br><img src="/images/ikuai_200/01.png"></p>
+<p>由于整栋楼有三百人左右，因此学校采取了非常“聪明的”方法保证上网速度——IP限速，这也是为什么每次测速的上限速度总是2.5Mbps左右，而日常1Mbps都很难达到。</p>
+<h2 id="最初的尝试——AP模式"><a href="#最初的尝试——AP模式" class="headerlink" title="最初的尝试——AP模式"></a>最初的尝试——AP模式</h2><p>这也是最简单最实用的方法，既然是针对IP的限速，那么将宿舍里的每台设备都直接接入交换机进行IP获取，此时的网络拓扑图如下<br><img src="/images/ikuai_200/02.png"><br>将路由器仅作为AP使用而不进行二级路由，即可使此路由器接入的设备直连到学校的交换机进行IP获取。这样设置的情况下，每台设备都能获得原先一整个宿舍才能获取的网速，单台设备的网速就大约是700-800KB/s，约5.6-6.4Mbps，而峰值性能甚至能达到1.2MB/s，相对于默认情况已经完全可用了，足以支撑打打网游，看看720P的视频。</p>
+<p>目前市面上在售的路由器，除非特别便宜或者特别老的型号，均可以调节成AP模式。</p>
+<h2 id="进一步尝试——多拨"><a href="#进一步尝试——多拨" class="headerlink" title="进一步尝试——多拨"></a>进一步尝试——多拨</h2><p>由于AP模式的成功，发现通过增加IP数量来获取更高的带宽完全可行。但由于单台设备的限速，还是无法突破1.2MB/s峰值和700KB/s平均的限制。</p>
+<p>那么，如果让一台设备拥有多个IP的话，是否能让这台设备获取更高的网速呢？</p>
+<h3 id="如何让一台设备获取多个IP"><a href="#如何让一台设备获取多个IP" class="headerlink" title="如何让一台设备获取多个IP"></a>如何让一台设备获取多个IP</h3><p>路由器的DHCP服务器是根据设备的MAC地址对其分配IP的，那么通过仿造多个MAC进行多次请求即可为这些虚拟设备获取到对应的IP。</p>
+<h3 id="如何有效的利用这些IP进行网速提升"><a href="#如何有效的利用这些IP进行网速提升" class="headerlink" title="如何有效的利用这些IP进行网速提升"></a>如何有效的利用这些IP进行网速提升</h3><p>这个问题实际上非常好解决，因为只要涉及到多拨必然会遇到这个问题，因此与之对应的技术<strong>负载均衡</strong>往往和多拨一起出现，只要配置好负载均衡，即可有效的把这些IP的网速资源进行整合。</p>
+<p>那么此时，网络拓扑图就变成了这样<br><img src="/images/ikuai_200/03.png"></p>
+<h2 id="实践——物理机软路由多拨"><a href="#实践——物理机软路由多拨" class="headerlink" title="实践——物理机软路由多拨"></a>实践——物理机软路由多拨</h2><p>这种方法其实网上已经教烂了，最简单的方法就是找台有两个（或以上）网口的x86的电脑，刷个ikuai或openwrt进行多拨，实际上我也对此进行了尝试，不过由于一系列原因导致我不得不放弃这个方法（如硬件不兼容、驱动不兼容、macvlan有问题等），但如果你手头上正好有一些废弃的笔记本电脑、淘汰下来的台式机等，我还是很推荐这种方法的。具体的设置流程和下面的虚拟机方法大同小异，主要区别就在于系统的安装和物理设备的架设上，不过并不复杂。</p>
+<h2 id="实践——虚拟机软路由多拨"><a href="#实践——虚拟机软路由多拨" class="headerlink" title="实践——虚拟机软路由多拨"></a>实践——虚拟机软路由多拨</h2><p>正题终于开始了，在正式尝试该方法之前，请务必确保上面AP模式能够切实提升你的网速后再尝试这个方法，否则大概率会失望而归。</p>
+<h3 id="下载VMware-Workstation-Pro"><a href="#下载VMware-Workstation-Pro" class="headerlink" title="下载VMware Workstation Pro"></a>下载VMware Workstation Pro</h3><p>具体方法请自行搜索，在此不进行演示。</p>
+<h3 id="下载ikuai的系统镜像"><a href="#下载ikuai的系统镜像" class="headerlink" title="下载ikuai的系统镜像"></a>下载ikuai的系统镜像</h3><p>访问<a target="_blank" rel="noopener" href="https://www.ikuai8.com/component/download">ikuai官网</a>，下载系统镜像。<br><img src="/images/ikuai_200/04.jpg"><br>我这里使用的是64位版的，暂不清楚32位是否可行，但理论上并无差异。</p>
+<h3 id="在VMware中安装ikuai虚拟机"><a href="#在VMware中安装ikuai虚拟机" class="headerlink" title="在VMware中安装ikuai虚拟机"></a>在VMware中安装ikuai虚拟机</h3><ol>
+<li><p>创建虚拟机<br><img src="/images/ikuai_200/05.png"></p>
+</li>
+<li><p>选择典型<br><img src="/images/ikuai_200/06.jpg"></p>
+</li>
+<li><p>选择ikuai的系统镜像<br><img src="/images/ikuai_200/07.jpg"></p>
+</li>
+<li><p>选择Linux，版本选 其他Linux 5.X 内核64位（选其他的可能也行，我没试过）<br><img src="/images/ikuai_200/08.jpg"></p>
+</li>
+<li><p>给虚拟机起个名字，然后选个存放位置<br><img src="/images/ikuai_200/09.jpg"></p>
+</li>
+<li><p>分配硬盘空间和磁盘存储方式，按照实际需求分配即可<br><img src="/images/ikuai_200/10.jpg"></p>
+</li>
+<li><p>安装如下步骤，配置好两个网络适配器<br><img src="/images/ikuai_200/11.jpg"><br><img src="/images/ikuai_200/12.jpg"><br><img src="/images/ikuai_200/13.jpg"></p>
+</li>
+</ol>
+<p><strong>注意：如果你使用的是x64的镜像，需要把内存调到2G或更多，否则镜像会安装失败</strong><br><img src="/images/ikuai_200/14.jpg"></p>
+<ol start="8">
+<li>调整虚拟网络编辑器，如果没有VMnet0和VMnet可点击添加网络自行添加。<br><img src="/images/ikuai_200/15.jpg"><br><img src="/images/ikuai_200/16.jpg"><br><img src="/images/ikuai_200/17.jpg"><br><img src="/images/ikuai_200/18.jpg"></li>
+</ol>
+<p><strong>注意：子网IP不一定非得是192.168.31.1，只要不与现有网段冲突即可</strong></p>
+<h3 id="初步配置ikuai"><a href="#初步配置ikuai" class="headerlink" title="初步配置ikuai"></a>初步配置ikuai</h3><ol>
+<li><p>开启虚拟机，安装系统<br><img src="/images/ikuai_200/19.jpg"><br><img src="/images/ikuai_200/20.jpg"></p>
+</li>
+<li><p>系统重启完成后，更换lan口绑定的网卡，然后输入q退回至主菜单。<br><img src="/images/ikuai_200/21.jpg"><br><img src="/images/ikuai_200/22.jpg"><br><img src="/images/ikuai_200/23.jpg"></p>
+</li>
+<li><p>更改LAN地址至上一阶段第8步最后设置的网段的第一位，然后输入q退回至主菜单。<br><img src="/images/ikuai_200/24.jpg"><br><img src="/images/ikuai_200/25.jpg"><br><img src="/images/ikuai_200/26.jpg"></p>
+</li>
+</ol>
+<h3 id="手动配置本机IP"><a href="#手动配置本机IP" class="headerlink" title="手动配置本机IP"></a>手动配置本机IP</h3><p><strong>注意：如果下一步能够直接进行（能直接访问webui），则可以直接跳过这一步</strong></p>
+<ol>
+<li><p>进入控制面板\所有控制面板项\网络连接，或按照如图所示进入网络连接<br><img src="/images/ikuai_200/27.jpg"></p>
+</li>
+<li><p>安装图示操作，注意这里修改的是VMnet1，不要改错了<br><img src="/images/ikuai_200/28.jpg"><br><img src="/images/ikuai_200/29.jpg"></p>
+</li>
+</ol>
+<h3 id="进入webui，进行多拨和负载均衡"><a href="#进入webui，进行多拨和负载均衡" class="headerlink" title="进入webui，进行多拨和负载均衡"></a>进入webui，进行多拨和负载均衡</h3><ol>
+<li><p>访问路由器的地址，账号密码均为admin，然后重新设置密码<br><img src="/images/ikuai_200/30.jpg"></p>
+</li>
+<li><p>点击wan1，绑定eth0，接入方式选基于物理网卡的混合模式，然后选DHCP/动态IP，然后点下保存<br><img src="/images/ikuai_200/31.jpg"><br><img src="/images/ikuai_200/32.jpg"><br><img src="/images/ikuai_200/33.jpg"></p>
+</li>
+<li><p>按照图示添加若干个vwan，需要手动给vwan编号，mac地址是随机生成的勿动。<br><img src="/images/ikuai_200/34.jpg"><br><img src="/images/ikuai_200/35.jpg"><br><img src="/images/ikuai_200/36.jpg"></p>
+</li>
+<li><p>如图进行负载均衡设置，把全部线路均设置为启用，负载比例均为1<br><img src="/images/ikuai_200/37.jpg"><br><img src="/images/ikuai_200/38.jpg"></p>
+</li>
+</ol>
+<h3 id="（可选）设置DHCP服务"><a href="#（可选）设置DHCP服务" class="headerlink" title="（可选）设置DHCP服务"></a>（可选）设置DHCP服务</h3><ol>
+<li><p>如图进入DHCP设置<br><img src="/images/ikuai_200/39.jpg"></p>
+</li>
+<li><p>如图进行配置，注意替换自己所在的网段<br><img src="/images/ikuai_200/40.jpg"></p>
+</li>
+<li><p>如果不是服务正常，就重启DHCP服务<br><img src="/images/ikuai_200/41.jpg"></p>
+</li>
+<li><p>按照“手动配置本机IP”部分，进入到IPv4设置，全选成自动，确认后等待一段时间观察蓝框处是否是Internet<br><img src="/images/ikuai_200/42.jpg"></p>
+</li>
+</ol>
+<h3 id="设置网关跃点数"><a href="#设置网关跃点数" class="headerlink" title="设置网关跃点数"></a>设置网关跃点数</h3><ol>
+<li><p>先按照“手动配置本机IP”部分，进入到IPv4设置，然后点击高级，取消勾选自动跃点，把跃点数改成1<br><img src="/images/ikuai_200/43.jpg"></p>
+</li>
+<li><p>在powershell中输入 <code>Get-NetIPInterface</code> 查看VMnet1的跃点数是否是最小的(也就是1)<br><img src="/images/ikuai_200/44.jpg"></p>
+</li>
+</ol>
+<h3 id="大功告成"><a href="#大功告成" class="headerlink" title="大功告成"></a>大功告成</h3><p>去测速网站跑个速度试试吧<br><img src="/images/ikuai_200/45.jpg"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>基于DHCP进行多拨叠速的方法仅适用于一些特定的网络结构，但稍加改动也是能够使用的，像是校园网这种需要登陆的网络，可以用不同同学的校园网账号分别绑定一个DHCP的IP（比如在绑定mwan1的时候把其他mwan暂时禁用，绑完了再去绑第二个），如果有无线网卡的话也可以把这个虚拟机的lan口直通给无线网卡等。</p>
+<p>而且，多拨能叠出来的带宽其实并不稳定（至少我这里不稳定），而且也不能发挥每个IP的满速。因此叠多少条最合适，怎么设置效率最高还是需要各位自己去探索的</p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://blog.well404.top/2022/03/25/%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ikuai%E7%B3%BB%E7%BB%9F%E8%BF%9B%E8%A1%8CDHCP%E5%A4%9A%E6%8B%A8/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://blog.well404.top/2022/03/25/%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ikuai%E7%B3%BB%E7%BB%9F%E8%BF%9B%E8%A1%8CDHCP%E5%A4%9A%E6%8B%A8/";
+            const title         = "「使用虚拟机安装ikuai系统进行DHCP多拨」";
+            const excerpt       = `多图警告：本文全部含有45张图片，使用流量时请慎重观看
+声明：本文是基于个人经验所撰写，并不一定准确和效率最高，请务必根据实际情况进行调整和部署。同时多拨有可能涉及其他风险，切勿不要盲目多拨，因使用该技术造成的一切后果均需要由您自己承...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2022-03-25</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 【NoneBot2】第二章：基础插件编写指南第二节———听得见，说得出" href="/2022/02/11/nonebot/【NoneBot2】第二章：基础插件编写指南第二节———听得见，说得出/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80%E5%8F%8A%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83"><span class="toc-text">前言及网络环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%88%9D%E7%9A%84%E5%B0%9D%E8%AF%95%E2%80%94%E2%80%94AP%E6%A8%A1%E5%BC%8F"><span class="toc-text">最初的尝试——AP模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%B0%9D%E8%AF%95%E2%80%94%E2%80%94%E5%A4%9A%E6%8B%A8"><span class="toc-text">进一步尝试——多拨</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E5%8F%B0%E8%AE%BE%E5%A4%87%E8%8E%B7%E5%8F%96%E5%A4%9A%E4%B8%AAIP"><span class="toc-text">如何让一台设备获取多个IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%9C%89%E6%95%88%E7%9A%84%E5%88%A9%E7%94%A8%E8%BF%99%E4%BA%9BIP%E8%BF%9B%E8%A1%8C%E7%BD%91%E9%80%9F%E6%8F%90%E5%8D%87"><span class="toc-text">如何有效的利用这些IP进行网速提升</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E7%89%A9%E7%90%86%E6%9C%BA%E8%BD%AF%E8%B7%AF%E7%94%B1%E5%A4%9A%E6%8B%A8"><span class="toc-text">实践——物理机软路由多拨</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BD%AF%E8%B7%AF%E7%94%B1%E5%A4%9A%E6%8B%A8"><span class="toc-text">实践——虚拟机软路由多拨</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDVMware-Workstation-Pro"><span class="toc-text">下载VMware Workstation Pro</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDikuai%E7%9A%84%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F"><span class="toc-text">下载ikuai的系统镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8VMware%E4%B8%AD%E5%AE%89%E8%A3%85ikuai%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">在VMware中安装ikuai虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E6%AD%A5%E9%85%8D%E7%BD%AEikuai"><span class="toc-text">初步配置ikuai</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%E6%9C%AC%E6%9C%BAIP"><span class="toc-text">手动配置本机IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5webui%EF%BC%8C%E8%BF%9B%E8%A1%8C%E5%A4%9A%E6%8B%A8%E5%92%8C%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-text">进入webui，进行多拨和负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89%E8%AE%BE%E7%BD%AEDHCP%E6%9C%8D%E5%8A%A1"><span class="toc-text">（可选）设置DHCP服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%BD%91%E5%85%B3%E8%B7%83%E7%82%B9%E6%95%B0"><span class="toc-text">设置网关跃点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%8A%9F%E5%91%8A%E6%88%90"><span class="toc-text">大功告成</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NoneBot2%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/">NoneBot2系列教程</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E3%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E8%BD%AF%E8%B7%AF%E7%94%B1/">网络、服务器和软路由</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/NoneBot2/" style="font-size: 0.6em;">NoneBot2</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/25/%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ikuai%E7%B3%BB%E7%BB%9F%E8%BF%9B%E8%A1%8CDHCP%E5%A4%9A%E6%8B%A8/"><i class="fa  fa-book"></i> 使用虚拟机安装ikuai系统进行DHCP多拨</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/11/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E4%BA%8C%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E5%90%AC%E5%BE%97%E8%A7%81%EF%BC%8C%E8%AF%B4%E5%BE%97%E5%87%BA/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第二节———听得见，说得出</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/11/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%80%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第一节———前置知识</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/02/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E5%AE%89%E8%A3%85%E5%B9%B6%E9%85%8D%E7%BD%AE%E4%BD%A0%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"><i class="fa  fa-book"></i> 【NoneBot2】第一章：安装并配置你的机器人及常见报错的解决方法</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/01/30/nonebot/%E3%80%90NoneBot2%E3%80%91%E5%89%8D%E8%A8%80%E2%80%94%E2%80%94%E4%BD%BF%E7%94%A8NoneBot2%E6%90%AD%E5%BB%BAQQ%E6%9C%BA%E5%99%A8%E4%BA%BA/"><i class="fa  fa-book"></i> 【NoneBot2】前言——使用NoneBot2搭建QQ机器人</a>
+            
+          
+        
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:well_404@outlook.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/well2333"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 Well404的妙妙屋 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Well404.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
