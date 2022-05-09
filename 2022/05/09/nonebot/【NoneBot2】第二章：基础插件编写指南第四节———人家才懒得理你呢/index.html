@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  <title>【NoneBot2】第二章：基础插件编写指南第四节———人家才懒得理你呢 | Well404的妙妙屋</title>
+  <meta name="author" content="Well404" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="NoneBot2" />
+  
+  <meta name="description" content="第二章：基础插件编写指南第四节———人家才懒得理你呢本节中，将会学习 priority 优先级、简述事件阻断机制、permission 权限控制以及 rule 模块的使用。 本节前言在接触到不少萌新开发者之后，我发现有不少新手的插件仅注重功能的实现，而不注重 “安全性” 方面的防范，导致机器人经常在群里被大家玩坏，导致账号风控甚至冻结。 我们首先来举几个例子，帮助大家了解一下为何我们要注重机器人的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【NoneBot2】第二章：基础插件编写指南第四节———人家才懒得理你呢">
+<meta property="og:url" content="http://blog.well404.top/2022/05/09/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E5%9B%9B%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BA%BA%E5%AE%B6%E6%89%8D%E6%87%92%E5%BE%97%E7%90%86%E4%BD%A0%E5%91%A2/index.html">
+<meta property="og:site_name" content="Well404的妙妙屋">
+<meta property="og:description" content="第二章：基础插件编写指南第四节———人家才懒得理你呢本节中，将会学习 priority 优先级、简述事件阻断机制、permission 权限控制以及 rule 模块的使用。 本节前言在接触到不少萌新开发者之后，我发现有不少新手的插件仅注重功能的实现，而不注重 “安全性” 方面的防范，导致机器人经常在群里被大家玩坏，导致账号风控甚至冻结。 我们首先来举几个例子，帮助大家了解一下为何我们要注重机器人的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.well404.top/2022/05/09/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E5%9B%9B%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BA%BA%E5%AE%B6%E6%89%8D%E6%87%92%E5%BE%97%E7%90%86%E4%BD%A0%E5%91%A2/images/nonebot_noob/logo.webp">
+<meta property="article:published_time" content="2022-05-09T12:30:00.000Z">
+<meta property="article:modified_time" content="2022-05-09T12:29:20.627Z">
+<meta property="article:author" content="Well404">
+<meta property="article:tag" content="NoneBot2">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.well404.top/2022/05/09/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E5%9B%9B%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BA%BA%E5%AE%B6%E6%89%8D%E6%87%92%E5%BE%97%E7%90%86%E4%BD%A0%E5%91%A2/images/nonebot_noob/logo.webp">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">博客主题の作者</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">博客主题の项目</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Well404的妙妙屋</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Well404的妙妙屋</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">【NoneBot2】第二章：基础插件编写指南第四节———人家才懒得理你呢</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2022-05-09</li>
+                <li><i class="fa fa-user"></i> 作者 Well404</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~5.03K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                本文最后编辑于 <time datetime="1652099360627"></time> 前，其中的内容可能需要更新。
+            </div>
+            
+                <div class="kratos-post-inner-toc">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E5%9B%9B%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BA%BA%E5%AE%B6%E6%89%8D%E6%87%92%E5%BE%97%E7%90%86%E4%BD%A0%E5%91%A2"><span class="toc-number">1.</span> <span class="toc-text">第二章：基础插件编写指南第四节———人家才懒得理你呢</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E8%8A%82%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">本节前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#priority-%E5%8F%8A-%E4%BA%8B%E4%BB%B6%E9%98%BB%E6%96%AD"><span class="toc-number">1.2.</span> <span class="toc-text">priority 及 事件阻断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#priority"><span class="toc-number">1.2.1.</span> <span class="toc-text">priority</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E8%BF%B0%E4%BA%8B%E4%BB%B6%E9%98%BB%E6%96%AD%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.2.</span> <span class="toc-text">简述事件阻断机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="toc-number">1.2.3.</span> <span class="toc-text">如何使用？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule%E6%A8%A1%E5%9D%97"><span class="toc-number">1.3.</span> <span class="toc-text">rule模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#permission"><span class="toc-number">1.4.</span> <span class="toc-text">permission</span></a></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <h1 id="第二章：基础插件编写指南第四节———人家才懒得理你呢"><a href="#第二章：基础插件编写指南第四节———人家才懒得理你呢" class="headerlink" title="第二章：基础插件编写指南第四节———人家才懒得理你呢"></a>第二章：基础插件编写指南第四节———人家才懒得理你呢</h1><p>本节中，将会学习 <code>priority</code> 优先级、简述事件阻断机制、<code>permission</code> 权限控制以及 <code>rule</code> 模块的使用。</p>
+<h2 id="本节前言"><a href="#本节前言" class="headerlink" title="本节前言"></a>本节前言</h2><p>在接触到不少萌新开发者之后，我发现有不少新手的插件仅注重功能的实现，而不注重 “安全性” 方面的防范，导致机器人经常在群里被大家玩坏，导致账号风控甚至冻结。</p>
+<p>我们首先来举几个例子，帮助大家了解一下为何我们要注重机器人的安全性：</p>
+<ol>
+<li>你写了一个涩图插件，那么在无内鬼的开车群里可以火力全开，但是在其他群聊里面你就会面临 “正义执行” 的举报，因此我们就需要限制发图频率甚至关闭插件保平安。</li>
+<li>你写了一个复读机插件，然后群里还有另外一个机器人也装了复读机插件，那么在触发条件之后这两个机器人很有可能就会互相刷屏，导致直接炸群。</li>
+<li>你写了一个爬虫插件，爬取的数据量较大，如果反复触发会导致网站封禁你的ip，这时你就需要过滤掉部分恶意请求。</li>
+<li>你写了一个群管插件，可以用于批量清人或禁言等敏感操作，这时你就需要设置仅由部分成员或管理员才能对机器人进行操作。</li>
+</ol>
+<p>上述情况实质上的解决方法都是一种——屏蔽掉我们不希望被执行的请求，那么这章的工具将会是你的得力助手。</p>
+<hr>
+<h2 id="priority-及-事件阻断"><a href="#priority-及-事件阻断" class="headerlink" title="priority 及 事件阻断"></a>priority 及 事件阻断</h2><h3 id="priority"><a href="#priority" class="headerlink" title="priority"></a>priority</h3><p>顾名思义，priority 为事件响应器优先级。在收到一条消息之后，nonebot会按照 <code>升序</code> 的方式逐一尝试使用每个事件响应器，直到事件被阻断（结束）或遍历完全部响应器。官方建议的 priority 取值范围为<strong>大于等于1的正整数</strong>。</p>
+<blockquote>
+<p>Tips：在nonebot的源码中，使用了 sorted() 函数对 priority 进行排序，也就是说理论上你加载的全部插件的 priorty 放到一个列表里后能够使用 sorted() 排序，那么理论上就不会报错。<br>这意味着你甚至可以传入不止大于等于1的正整数，你可以使用0、负数、浮点数甚至字符串（前提是全部 priority 都使用的是字符串）作为priority。但由于源码中某些<strong>重要事件</strong>的优先级为<strong>0</strong>，<strong>小于等于0</strong>的优先级很有可能会导致不可知的问题，请务必<strong>不要</strong>这么做！请一定要按照官方的建议，使用<strong>大于等于1的正整数</strong>作为插件的优先级。</p>
+</blockquote>
+<p>聪明的你可能要提出一些疑问了：“为什么这个 priority 感觉和安全性关系不大呢？”，实际上也正是这样，priority 更多的会被应用在插件间的流程控制上，而配合起事件阻断机制可以对消息进行筛选，将事件拦截在触发之前。</p>
+<h3 id="简述事件阻断机制"><a href="#简述事件阻断机制" class="headerlink" title="简述事件阻断机制"></a>简述事件阻断机制</h3><blockquote>
+<p>首先声明一点：这里仅是简述，可能会出现表述不严谨和过分简化的情况，请仅作为辅助理解。</p>
+</blockquote>
+<p>在nonebot接收到事件并进行预处理之后，会将这个事件按照 priority 的顺序进行遍历，当以下情况之一发生的情况时，该事件将不会被继续处理：</p>
+<ol>
+<li>有任意事件响应器发出了阻止事件传递信号时。</li>
+<li>全部事件响应器均已传递完成，没有其他事件响应器可用。</li>
+</ol>
+<p>也就是说，如果事件一直没有被阻断的话，可以被多个事件处理器接受并处理，相对的，如果事件被阻断了，后面的事件响应器即便能对该消息进行处理也不会被触发了。</p>
+<p>举个例子：假设有人在群里发了张涩图，那么网速快的群友就能陆续收到这份涩图并开冲，然后被管理员 “OT警察” 看到了，认为影响不好，便撤回了涩图，那么后续的群友就无缘见到这张涩图了。</p>
+<p>带入到nonebot的事件处理流程中，便是：机器人接收到消息后会生成一个事件，依次遍历事件响应器，优先级高一些的事件响应器可以更快的响应这个事件，直到某个事件响应器阻断了这个事件，那么后面的事件响应器就不会收到这个事件了。</p>
+<p>目前，我们可以通过在事件响应器中添加 <code>block</code> 参数来指定该事件响应器是否会在执行完成后进行阻断，也可以在事件处理函数中使用 <code>matcher.stop_propagation()</code> 来直接阻断该事件</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nonebot <span class="keyword">import</span> on_message</span><br><span class="line"><span class="keyword">from</span> nonebot.matcher <span class="keyword">import</span> Matcher</span><br><span class="line"></span><br><span class="line">foo = on_message(priority=<span class="number">1</span>, block=<span class="literal">False</span>)</span><br><span class="line"><span class="meta">@foo.handle()</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">matcher: Matcher</span>):</span><br><span class="line">    matcher.stop_propagation()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Tips: </p>
+<ol>
+<li><code>matcher.stop_propagation()</code> 会直接阻断该事件的传播，也会直接结束该事件的处理流程，类似于在函数中进行 <code>return</code> ，此后的代码将不会被执行。</li>
+<li>不同的<a target="_blank" rel="noopener" href="https://v2.nonebot.dev/docs/tutorial/plugin/create-matcher#%E5%88%9B%E5%BB%BA%E4%BA%8B%E4%BB%B6%E5%93%8D%E5%BA%94%E5%99%A8">辅助函数</a>其默认block状态并不相同，因此请务必注意其阻断状态不会影响其他事件响应器的正常执行。</li>
+</ol>
+</blockquote>
+<h3 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h3><p>聪明的你一定想到了：我们可以通过设置一个<strong>优先级最高</strong>的事件响应器来检查全部的事件，对于不符合规范的事件可用通过<strong>事件阻断机制进行屏蔽</strong>。</p>
+<blockquote>
+<p>注意：这种方法<strong>并不能</strong>拦截全部事件进行检查，而且相对来说功能也比较有限，在此仅作为示例展示，本人更加推荐使用 <code>钩子函数</code> 对事件进行 <code>预处理</code> 的写法，该种写法会在进阶教程中展示（如果我没咕咕咕的话）</p>
+</blockquote>
+<p>实现起来也非常的简单，直接上代码：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nonebot <span class="keyword">import</span> on_message</span><br><span class="line"><span class="keyword">from</span> nonebot.matcher <span class="keyword">import</span> Matcher</span><br><span class="line"><span class="keyword">from</span> nonebot.adapters.onebot.v11 <span class="keyword">import</span> Event</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">can_pass</span>(<span class="params">message</span>):</span><br><span class="line">    <span class="comment"># 判断是否可以通过</span></span><br><span class="line">    <span class="keyword">if</span> <span class="number">1</span>==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">bot_guard = on_message(priority=<span class="number">1</span>, block=<span class="literal">False</span>) <span class="comment"># block=False 即默认不阻断事件</span></span><br><span class="line"><span class="meta">@bot_guard.handle()</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">bot_guard_handle</span>(<span class="params">matcher: Matcher,event: Event</span>):</span><br><span class="line">    message = <span class="built_in">str</span>(event.get_message()) <span class="comment"># 获取用户所发的消息内容</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> can_pass(message):          <span class="comment"># 如果返回值是False则阻断事件</span></span><br><span class="line">        matcher.stop_propagation()</span><br></pre></td></tr></table></figure>
+
+<p>当然，在此基础上你可以添加依据群号、qq号、关键词和发言频率等一系列判断措施。</p>
+<hr>
+<h2 id="rule模块"><a href="#rule模块" class="headerlink" title="rule模块"></a>rule模块</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://v2.nonebot.dev/docs/next/advanced/rule#%E5%88%9B%E5%BB%BA%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99">官方文档</a>：机器人在实际应用中，往往会接收到多种多样的事件类型，NoneBot2 提供了可自定义的匹配规则 ── <code>Rule</code>。</p>
+</blockquote>
+<p>正如官方文档的描述，rule模块可以在事件还未被处理，在响应器层面实现对消息的过滤。当然，你也可以在事件处理阶段对事件进行判断并且在不符合预期的情况下finish掉这个事件（就像上边的黑名单插件）。不过在事件响应器阶段对事件进行初步筛选可以大幅降低被触发的事件处理流程的数量，也就意味着能更加节约服务器资源，同时也可以减少无效log的数量，方便对日志进行阅读。</p>
+<p>当然，使用rule模块的时候，一定要注意不要进行 <code>事件处理</code>，有可能会造成bug，如果需要涉及到事件处理流程的判断，我们还是可以通过强制结束事件来处理的，没必要讲全部判断都一股脑塞到rule中。个人建议的写法为在rule中仅进行简单的判断，进行初步筛选和过滤即可。</p>
+<p>我们以判断QQ号为例展示一下使用方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nonebot <span class="keyword">import</span> on_message</span><br><span class="line"><span class="keyword">from</span> nonebot.adapters.onebot.v11 <span class="keyword">import</span> Event</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">user_checker</span>(<span class="params">event: Event</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">    <span class="keyword">if</span> event.get_user_id() == <span class="string">&quot;123123&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">elif</span> event.get_user_id() == <span class="string">&quot;321321&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">setu_sender = on_message(rule=user_checker)</span><br></pre></td></tr></table></figure>
+<p>不难发现，我们在用于检查的函数中，可以自由引用和事件处理函数中相同的依赖，也就是代码中的 <code>event</code> ，而且使用方法也和正常的处理流程中是一样的。</p>
+<p>同时在rule模块中的Rule()能够支持将一个及以上的检查器（也就是user_checker）合并为一个整体进行检查，遵循<code>与</code>规则（一否全否），具体代码实现可以参考官方文档<a target="_blank" rel="noopener" href="https://v2.nonebot.dev/docs/next/advanced/rule#%E5%90%88%E5%B9%B6%E5%8C%B9%E9%85%8D%E8%A7%84%E5%88%99">合并匹配规则</a>，在此不多阐述。</p>
+<hr>
+<h2 id="permission"><a href="#permission" class="headerlink" title="permission"></a>permission</h2><p>在机器人的实际应用中，总有一些功能是不适宜在大庭广众下使用的，也有一些敏感的功能仅能供给给机器人拥有者（超级用户）使用的。在nonebot中，<code>Permission</code>就是解决这类问题的存在。</p>
+<p>正如同其字面意思，<code>Permission</code> 的作用就是对用户身份进行辨认和过滤，仅允许通过判断的用户触发其所属的事件响应器。</p>
+<blockquote>
+<p><strong>注意：以下部分摘自<a target="_blank" rel="noopener" href="https://v2.nonebot.dev/docs/next/advanced/permission#%E5%BA%94%E7%94%A8">官方文档</a></strong></p>
+</blockquote>
+<p>如同 <code>Rule</code> 一样，<code>Permission</code> 可以在定义事件响应器时添加 <code>permission</code> 参数来加以应用，这样 NoneBot2 会在事件响应时检测事件主体的权限。下面我们以 <code>SUPERUSER</code> 为例，对该机制的应用做一下介绍。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nonebot.permission <span class="keyword">import</span> SUPERUSER</span><br><span class="line"><span class="keyword">from</span> nonebot <span class="keyword">import</span> on_command</span><br><span class="line"></span><br><span class="line">matcher = on_command(<span class="string">&quot;测试超管&quot;</span>, permission=SUPERUSER)</span><br><span class="line"></span><br><span class="line"><span class="meta">@matcher.handle()</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">_</span>():</span><br><span class="line">    <span class="keyword">await</span> matcher.send(<span class="string">&quot;超管命令测试成功&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@matcher.got(<span class="params"><span class="string">&quot;key1&quot;</span>, <span class="string">&quot;超管提问&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">_</span>():</span><br><span class="line">    <span class="keyword">await</span> matcher.send(<span class="string">&quot;超管命令 got 成功&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中，我们事件响应器指定了 <code>SUPERUSER</code> 这样一个权限，那么机器人只会响应超级管理员的 <code>测试超管</code> 命令，并且会响应该超级管理员的连续对话。</p>
+<blockquote>
+<p>提示<br>在这里需要强调的是，<code>Permission</code> 与 <code>Rule</code> 的表现并不相同， <code>Rule</code> 只会在初次响应时生效，在余下的对话中并没有限制事件；但是 <code>Permission</code> 会持续生效，在连续对话中一直对事件主体加以限制。</p>
+</blockquote>
+<blockquote>
+<p><strong>注意：以上部分摘自<a target="_blank" rel="noopener" href="https://v2.nonebot.dev/docs/next/advanced/permission#%E5%BA%94%E7%94%A8">官方文档</a></strong></p>
+</blockquote>
+<p>在nonebot中，permission的权限分为两部分，由 <code>nonebot.permission</code> 提供的 <code>SUPERUSER</code>，以及适配器提供的权限，其中由 <code>onebot.v11</code> 提供的权限有以下几种</p>
+<table>
+<thead>
+<tr>
+<th>权限类型</th>
+<th>匹配范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PRIVATE</td>
+<td>全部私聊</td>
+</tr>
+<tr>
+<td>PRIVATE_FRIEND</td>
+<td>私聊好友</td>
+</tr>
+<tr>
+<td>PRIVATE_GROUP</td>
+<td>群临时私聊</td>
+</tr>
+<tr>
+<td>PRIVATE_OTHER</td>
+<td>其他临时私聊</td>
+</tr>
+<tr>
+<td>GROUP</td>
+<td>全部群聊</td>
+</tr>
+<tr>
+<td>GROUP_MEMBER</td>
+<td>任意群员</td>
+</tr>
+<tr>
+<td>GROUP_ADMIN</td>
+<td>群管理</td>
+</tr>
+<tr>
+<td>GROUP_OWNER</td>
+<td>群主</td>
+</tr>
+</tbody></table>
+<p>如同 <code>Rule</code> 一样，<code>Permission</code> 也是由非负整数个 <code>PermissionChecker</code> 组成的，但只需其中一个返回 <code>True</code> 时就会匹配成功。</p>
+<p>例如，我们想要匹配<code>私聊</code>或<code>群管理</code>时，可以使用这种写法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nonebot.adapters.onebot.v11.permission <span class="keyword">import</span> GROUP_ADMIN,PRIVATE</span><br><span class="line"><span class="keyword">from</span> nonebot <span class="keyword">import</span> on_command</span><br><span class="line"></span><br><span class="line">matcher = on_command(<span class="string">&quot;setu&quot;</span>, permission=PRIVATE|GROUP_ADMIN)</span><br></pre></td></tr></table></figure>
+<p>那么这个响应器将会对任意私聊或群聊中的管理员进行响应。</p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://blog.well404.top/2022/05/09/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E5%9B%9B%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BA%BA%E5%AE%B6%E6%89%8D%E6%87%92%E5%BE%97%E7%90%86%E4%BD%A0%E5%91%A2/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://blog.well404.top/2022/05/09/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E5%9B%9B%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BA%BA%E5%AE%B6%E6%89%8D%E6%87%92%E5%BE%97%E7%90%86%E4%BD%A0%E5%91%A2/";
+            const title         = "「【NoneBot2】第二章：基础插件编写指南第四节———人家才懒得理你呢」";
+            const excerpt       = `第二章：基础插件编写指南第四节———人家才懒得理你呢本节中，将会学习 priority 优先级、简述事件阻断机制、permission 权限控制以及 rule 模块的使用。
+本节前言在接触到不少萌新开发者之后，我发现有不少新手的插件仅...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/NoneBot2/" rel="tag">NoneBot2</a>
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2022-05-09</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 【NoneBot2】第二章：基础插件编写指南第三节———会说话就多说点" href="/2022/03/31/nonebot/【NoneBot2】第二章：基础插件编写指南第三节———会说话就多说点/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E5%9B%9B%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BA%BA%E5%AE%B6%E6%89%8D%E6%87%92%E5%BE%97%E7%90%86%E4%BD%A0%E5%91%A2"><span class="toc-text">第二章：基础插件编写指南第四节———人家才懒得理你呢</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E8%8A%82%E5%89%8D%E8%A8%80"><span class="toc-text">本节前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#priority-%E5%8F%8A-%E4%BA%8B%E4%BB%B6%E9%98%BB%E6%96%AD"><span class="toc-text">priority 及 事件阻断</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#priority"><span class="toc-text">priority</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E8%BF%B0%E4%BA%8B%E4%BB%B6%E9%98%BB%E6%96%AD%E6%9C%BA%E5%88%B6"><span class="toc-text">简述事件阻断机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="toc-text">如何使用？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rule%E6%A8%A1%E5%9D%97"><span class="toc-text">rule模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#permission"><span class="toc-text">permission</span></a></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NoneBot2%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/">NoneBot2系列教程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E3%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E8%BD%AF%E8%B7%AF%E7%94%B1/">网络、服务器和软路由</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/NoneBot2/" style="font-size: 0.6em;">NoneBot2</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2022/05/09/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E5%9B%9B%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BA%BA%E5%AE%B6%E6%89%8D%E6%87%92%E5%BE%97%E7%90%86%E4%BD%A0%E5%91%A2/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第四节———人家才懒得理你呢</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/31/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%89%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BC%9A%E8%AF%B4%E8%AF%9D%E5%B0%B1%E5%A4%9A%E8%AF%B4%E7%82%B9/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第三节———会说话就多说点</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/25/%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ikuai%E7%B3%BB%E7%BB%9F%E8%BF%9B%E8%A1%8CDHCP%E5%A4%9A%E6%8B%A8/"><i class="fa  fa-book"></i> 使用虚拟机安装ikuai系统进行DHCP多拨</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/11/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E4%BA%8C%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E5%90%AC%E5%BE%97%E8%A7%81%EF%BC%8C%E8%AF%B4%E5%BE%97%E5%87%BA/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第二节———听得见，说得出</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/02/11/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%80%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第一节———前置知识</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:well_404@outlook.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/well2333"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2022 Well404的妙妙屋 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Well404.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
