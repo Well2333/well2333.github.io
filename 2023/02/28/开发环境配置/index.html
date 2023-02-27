@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/avatar.webp">
+  <title>面对初学者的python开发环境配置 | Well404的妙妙屋</title>
+  <meta name="author" content="Well404" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="" />
+  
+  <meta name="description" content="⚠警告受限于作者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 &amp;#x77;&amp;#101;&amp;#108;&amp;#108;&amp;#x5f;&amp;#x34;&amp;#48;&amp;#52;&amp;#x40;&amp;#x6f;&amp;#117;&amp;#x74;&amp;#108;&amp;#x6f;&amp;#111;&amp;#x6b;&amp;#46;&amp;#99;&amp;#111;&amp;#109;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面对初学者的python开发环境配置">
+<meta property="og:url" content="http://blog.well404.top/2023/02/28/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Well404的妙妙屋">
+<meta property="og:description" content="⚠警告受限于作者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 &amp;#x77;&amp;#101;&amp;#108;&amp;#108;&amp;#x5f;&amp;#x34;&amp;#48;&amp;#52;&amp;#x40;&amp;#x6f;&amp;#117;&amp;#x74;&amp;#108;&amp;#x6f;&amp;#111;&amp;#x6b;&amp;#46;&amp;#99;&amp;#111;&amp;#109;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blog.well404.top/images/avatar.webp">
+<meta property="article:published_time" content="2023-02-27T18:00:00.000Z">
+<meta property="article:modified_time" content="2023-02-27T19:29:21.936Z">
+<meta property="article:author" content="Well404">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog.well404.top/images/avatar.webp">
+<meta name="twitter:site" content="@null">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" type="text/css" media="all">
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" type="text/css" media="all">
+  
+  
+  <link rel="stylesheet" id="fontawe-css" href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <link rel="stylesheet" id="nprogress-css" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" type="text/css" media="all">
+  
+  
+  
+    <link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  
+    <link rel="stylesheet" id="darkmode-css" href="/css/kr-dark.min.css" type="text/css" media="all">
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="https://unpkg.com/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+      .kratos-cover.kratos-cover-2 {
+        background-image: url('/images/banner.webp');
+      }
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.webp');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                        <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                    
+                                
+                                    
+                                        <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                    
+                                
+                                    
+                                        <li>
+                                            <a><i class="fa fa-link"></i>链接</a>
+                                            <ul class="sub-menu">
+                                                
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://candinya.com">博客主题の作者</a></li>
+                                                    
+                                                
+                                                    
+                                                        <li><a target="_blank" rel="noopener" href="https://github.com/Candinya/Kratos-Rebirth">博客主题の项目</a></li>
+                                                    
+                                                
+                                            </ul>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Well404的妙妙屋</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Well404的妙妙屋</h2> <br />
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article>
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center">面对初学者的python开发环境配置</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><i class="fa fa-calendar"></i> 2023-02-28</li>
+                <li><i class="fa fa-user"></i> 作者 Well404</li>
+                <li>
+                    <i class="fa fa-edit"></i> 
+                    
+                    
+                        ~4.32K
+                    
+                    字
+                </li>
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                本文最后编辑于 <time datetime="1677526161936"></time> 前，其中的内容可能需要更新。
+            </div>
+            
+                <div class="kratos-post-inner-toc">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%AF%B9%E5%88%9D%E5%AD%A6%E8%80%85%E7%9A%84python%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">面对初学者的python开发环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E7%AF%87%E5%85%88%E5%8F%A0%E7%94%B2"><span class="toc-number">1.1.</span> <span class="toc-text">开篇先叠甲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pycharm-or-VSCode"><span class="toc-number">1.2.1.</span> <span class="toc-text">Pycharm or VSCode?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VSCode-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.2.</span> <span class="toc-text">VSCode 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VSCode-%E6%8F%92%E4%BB%B6"><span class="toc-number">1.2.3.</span> <span class="toc-text">VSCode 插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.</span> <span class="toc-text">虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#conda-%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">1.3.1.</span> <span class="toc-text">conda 的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.2.</span> <span class="toc-text">conda 的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">Windows</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.3.</span> <span class="toc-text">conda的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">使用conda创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E7%A7%BB%E9%99%A4%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">使用conda移除虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%97%E8%A1%A8"><span class="toc-number">1.3.3.3.</span> <span class="toc-text">查看conda虚拟环境列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.3.4.</span> <span class="toc-text">使用conda激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%80%E5%87%BAconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.3.5.</span> <span class="toc-text">退出conda虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda%E7%8E%AF%E5%A2%83%E5%86%85%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.3.3.6.</span> <span class="toc-text">conda环境内的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-VSCode-%E4%B8%AD%E5%BA%94%E7%94%A8-Conda-%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.4.</span> <span class="toc-text">在 VSCode 中应用 Conda 环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E5%B0%BE%E7%9A%84%E4%B8%80%E4%BA%9B%E7%A2%8E%E7%A2%8E%E5%BF%B5"><span class="toc-number">1.4.</span> <span class="toc-text">结尾的一些碎碎念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%80%89%E6%8B%A9"><span class="toc-number">1.4.1.</span> <span class="toc-text">虚拟环境的介绍与选择</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <blockquote>
+<p>⚠警告<br>受限于作者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 <a href="mailto:&#x77;&#101;&#108;&#108;&#x5f;&#x34;&#48;&#52;&#x40;&#x6f;&#117;&#x74;&#108;&#x6f;&#111;&#x6b;&#46;&#99;&#111;&#109;">&#x77;&#101;&#108;&#108;&#x5f;&#x34;&#48;&#52;&#x40;&#x6f;&#117;&#x74;&#108;&#x6f;&#111;&#x6b;&#46;&#99;&#111;&#109;</a> 以联系作者进行更正。</p>
+</blockquote>
+<h1 id="面对初学者的python开发环境配置"><a href="#面对初学者的python开发环境配置" class="headerlink" title="面对初学者的python开发环境配置"></a>面对初学者的python开发环境配置</h1><p>在学习 python 的过程中，难免会遇到一些环境方面的问题，例如两个不同项目的依赖相互冲突，使用IDLE写代码太麻烦，写出来的的代码格式乱七八糟…</p>
+<p>本文希望用一个相对简单易懂的方式，让大家能有一个可以长期使用的 Python 开发环境，并在之后逐步了解一些常用的开发工具。</p>
+<h2 id="开篇先叠甲"><a href="#开篇先叠甲" class="headerlink" title="开篇先叠甲"></a>开篇先叠甲</h2><p>本教程并不是一个十分严谨、客观且适用于所有人的环境组合，如果你的开发环境也很好用那么你大可不必切换到不熟悉的开发环境，毕竟自己用的舒服才是最重要的。</p>
+<h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><p>对于程序猿来说，技术层面最能提高工作效率的无疑是一款好的编辑器。</p>
+<p>目前 Python 主流的代码编辑器有 Pycharm 和 VSCode 两款。</p>
+<h3 id="Pycharm-or-VSCode"><a href="#Pycharm-or-VSCode" class="headerlink" title="Pycharm or VSCode?"></a>Pycharm or VSCode?</h3><p>Pycharm 是由 jetbrains 开发并发行的一款 Python 集成开发环境，拥有丰厚的历史底蕴。但由于功能繁多、配置复杂，对于新手上手较为困难，笔者曾多次遇到因不理解某些概念直接使用 Pycharm 造成的错误（如工作区错误，虚拟环境错误等）。同时其体积和内存消耗惊人，空载状态（打开一个空的文本文档）下就消耗了约1.5G的内存。因此除非你是 Pycharm 的老用户，否则并不推荐使用 Pycharm 进行开发。</p>
+<p>VSCode 是由微软开发的开源免费的跨平台代码编辑器，得益于其庞大的插件市场，你几乎可以用 VSCode 对任意类型的代码进行编辑，对于 Python JavaScript TypeScript 等多种语言以及 Json Yaml Markdown HTML 等富文本均有十分良好的支持。由于 VSCode 起步较晚，其表现在初期并不如 jetbrains 的一众老牌编辑器，但目前笔者认为其功能和使用体验已经实现了全方位的赶超。同时，相较于 Pycharm 惊人的资源占用，VSCode 的空载状态（打开一个空的文本文档）下占用约为280M，但内存占用会随着安装的插件和打开的项目大小逐步增加，实际安装好对应插件并打开一个 Python 项目的占用约为 800M-1G 左右。</p>
+<h3 id="VSCode-的安装"><a href="#VSCode-的安装" class="headerlink" title="VSCode 的安装"></a>VSCode 的安装</h3><p>VSCode的安装方式可以参考<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/vscode-tutorial.html">菜鸟教程的这篇文章</a>，其中详细的展示了VSCode的安装方法，在此容笔者偷个懒不做演示。</p>
+<h3 id="VSCode-插件"><a href="#VSCode-插件" class="headerlink" title="VSCode 插件"></a>VSCode 插件</h3><p>插件系统算是 VSCode 的灵魂，是否正确的选择了插件对于编程来说会有截然不同的体验。</p>
+<p>在按照上文安装完汉化包后，在输入框搜索 Python 并安装 Python 语言插件，并推荐安装 isort indent-rainbow SonarLint Sourcery 这几个辅助插件。</p>
+<p>Python 语言插件是对代码提供高亮以及语法提示，是 VSCode 编写 Python 必备的插件。</p>
+<p><img src="/images/other/plugin_pylance.png" alt="pylance"></p>
+<p>isort 可以对你的 import 进行排序，需要在 Python 文件中需要通过右键菜单主动调用。</p>
+<p><img src="/images/other/plugin_isort.png" alt="isort"></p>
+<p><img src="/images/other/isort_usage.png" alt="isort"></p>
+<p>indent-rainbow 可以给你的代码缩进加上不同颜色的高亮，并对不符合缩进的部分标红。</p>
+<p><img src="/images/other/plugin_indent-rainbow.png" alt="indent-rainbow"></p>
+<p>SonarLint 可以帮助你发现代码中的潜在问题和不符合PEP规范的代码，并且也适用于多种不同的编程语言。可以参考插件介绍页面的动图了解其具体功能。</p>
+<p><img src="/images/other/pulgin_sonarlint.png" alt="sonarlint"></p>
+<p>Sourcery 相对 SonarLint 不光可以提示你的错误，更可以直接帮助你修改代码，使其拥有更好的可读性。可以参考插件介绍页面的动图了解其具体功能。</p>
+<p><img src="/images/other/plugin_sourcery.png" alt="sourcery"></p>
+<p>完成以上这些插件的安装后，你就会得到一个舒适的代码编辑环境了。</p>
+<h2 id="虚拟环境"><a href="#虚拟环境" class="headerlink" title="虚拟环境"></a>虚拟环境</h2><p>虚拟环境，顾名思义是一个独立于其他环境的开发环境，就像是虚拟机之间一样，不同的虚拟机无法直接影响其他的虚拟机，虚拟环境也是如此。面对同时需要使用较多依赖、同时开发多个项目甚至部分因为环境问题无法安装的项目（常见于深度学习方面），使用虚拟环境都能有效的解决。</p>
+<p>Python 的虚拟环境目前有自带的 <a target="_blank" rel="noopener" href="https://docs.python.org/3/library/venv.html">venv</a> 和 <a target="_blank" rel="noopener" href="https://virtualenv.pypa.io/">virtualenv</a>，也有基于此开发的功能更加强大的 <a target="_blank" rel="noopener" href="https://python-poetry.org/">poetry</a> 和 <a target="_blank" rel="noopener" href="https://pdm.fming.dev/">pdm</a>，这些工具都很好用，但相对较为复杂，需要用户对虚拟环境有一定的理解后才能顺利的使用。</p>
+<p>这里笔者更推荐新手使用 <a target="_blank" rel="noopener" href="https://docs.conda.io/">conda</a>，conda 是一个跨平台、多语言的虚拟环境管理工具，相较于前文提到的的虚拟环境在解释器层面的虚拟化，conda 更像是虚拟开发环境，每个环境都是一个“独立”的 Python。因此相较于前者，conda 不需要额外安装 Python解释器，只需要安装 conda 即可直接在环境创建中安装指定版本的 Python 解释器。</p>
+<p>但 conda 也有一个严重的缺点，就是较高的磁盘空间占用。由于其跨语言的特性，conda 的虚拟环境管理远不如 poetry 和 pdm 来的精细，并且一个环境就附带一个 python 解释器也会消耗不少的磁盘空间，至于项目管理的功能更是相较于无虚拟环境几乎没有提升，因此 conda 只是一个纯粹的虚拟环境，在单项目依赖较为复杂和需要包管理的情况下，需要配合 poetry 或 pdm 来使用。</p>
+<p>不过上述的缺点相对萌新来说远不如其简便的操作与最强的鲁棒性所带来的绝对优势，同时大量科学计算、深度学习等领域也会依赖 conda 环境才能运作，并且 conda 里面也可以套娃安装 pdm 或 poetry（虽然不推荐这么做）。因此对于萌新来说学习 conda 是最好的选择。</p>
+<h3 id="conda-的选择"><a href="#conda-的选择" class="headerlink" title="conda 的选择"></a>conda 的选择</h3><p>conda 目前有两个版本：<a target="_blank" rel="noopener" href="https://www.anaconda.com/">Anaconda</a> 和 <a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>。Miniconda 是 conda 的最小实现；Anaconda 中额外包含了常用的深度学习的依赖以及GUI界面。关于二者的选择，可以参考<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/stable/user-guide/install/download.html#anaconda-or-miniconda">官方的描述</a>。但笔者仅推荐使用 Miniconda，一是因为 Anaconda 中的大多数依赖萌新很难用得到，二是因为 Anaconda 的GUI界面实际上并不好用且非常卡（可能是用 Python 的UI库写的吧），因此没必要浪费额外的磁盘空间去安装 Anaconda。</p>
+<h3 id="conda-的安装"><a href="#conda-的安装" class="headerlink" title="conda 的安装"></a>conda 的安装</h3><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>在 miniconda下载地址 中选择合适的版本进行下载。64位用户可以直接<a target="_blank" rel="noopener" href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe">点击这里</a>下载最新版的安装包进行安装。</p>
+<p>由于 Windows 下的 miniconda 安装并无什么难度，基本上一路 next 就可以了，在此不进行演示。</p>
+<p><strong>千万不要将 miniconda 安装到任意一个Program Files路径下，此操作将会导致 conda 因权限问题无法使用</strong></p>
+<p>注意在安装前最后一步将 miniconda 添加至环境变量。</p>
+<p><img src="/images/other/install_conda.png" alt="安装conda"></p>
+<p>注意这四个选项一定要全部勾选！这里也推荐勾选第二项以方便在其他程序和终端中进行调用。</p>
+<h3 id="conda的基础使用"><a href="#conda的基础使用" class="headerlink" title="conda的基础使用"></a>conda的基础使用</h3><p>我们来简单介绍一些基础的使用方法，更多指令与操作可以查询<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/user-guide/">官方文档</a>。</p>
+<h4 id="使用conda创建虚拟环境"><a href="#使用conda创建虚拟环境" class="headerlink" title="使用conda创建虚拟环境"></a>使用conda创建虚拟环境</h4><p>创建一个名为 <code>test</code> 的虚拟环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>创建一个名为 <code>test</code>，且python版本为 <code>3.8</code> 的虚拟环境的虚拟环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n <span class="built_in">test</span> python=3.8</span><br></pre></td></tr></table></figure>
+
+<p>从已有的虚拟环境 <code>test</code> 复制一份为 <code>test_copy</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n test_copy --<span class="built_in">clone</span> <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="使用conda移除虚拟环境"><a href="#使用conda移除虚拟环境" class="headerlink" title="使用conda移除虚拟环境"></a>使用conda移除虚拟环境</h4><p>移除一个名为 <code>test</code> 的虚拟环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n <span class="built_in">test</span> --all</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看conda虚拟环境列表"><a href="#查看conda虚拟环境列表" class="headerlink" title="查看conda虚拟环境列表"></a>查看conda虚拟环境列表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用conda激活虚拟环境"><a href="#使用conda激活虚拟环境" class="headerlink" title="使用conda激活虚拟环境"></a>使用conda激活虚拟环境</h4><p>激活一个名为 <code>test</code> 的虚拟环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>如果激活成功，在用户名前会有环境名的提示，例如：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">Well404</span>&gt;<span class="title">conda</span> <span class="title">activate</span> <span class="title">sign</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">(<span class="title">sign</span>) <span class="title">C</span>:\<span class="title">Users</span>\<span class="title">Well404</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，Windows PowerShell 默认情况下<strong>无法直接</strong>激活 conda 虚拟环境，请务必在 Windows 系统中使用 cmd 进行操作或在 PowerShell 中使用 <code>conda init</code> 命令来初始化 conda 的配置。</p>
+<h4 id="退出conda虚拟环境"><a href="#退出conda虚拟环境" class="headerlink" title="退出conda虚拟环境"></a>退出conda虚拟环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，此命令不包含任何额外的参数。因为一个终端仅能同时激活一个虚拟环境，因此也没有必要指定取消激活的虚拟环境的环境名。</p>
+<h4 id="conda环境内的使用"><a href="#conda环境内的使用" class="headerlink" title="conda环境内的使用"></a>conda环境内的使用</h4><p>由于使用了一个虚拟环境，在这个虚拟环境激活时，我们可以正常的使用 Python 中的绝大部分命令与工具，同时 conda 也提供了一些指令，但在此就不过多阐述了。</p>
+<p>对于仅使用虚拟环境这一项功能的用户，我们可以直接使用正常操作 Python 的方式进行操作，例如使用 <code>pip</code> 安装第三方库，使用此环境下中 python 的命令行工具以及交互式编程等等，简而言之就是平时怎么用还怎么用，只要你的虚拟环境是激活的的状态，此环境内的改变是不会影响到其他无关的环境的。</p>
+<h3 id="在-VSCode-中应用-Conda-环境"><a href="#在-VSCode-中应用-Conda-环境" class="headerlink" title="在 VSCode 中应用 Conda 环境"></a>在 VSCode 中应用 Conda 环境</h3><p>在 VSCode 中打开一个 Python 文件之后，可以在编辑器界面的右下角找到当前的的解释器（环境）的版本和名称，单击后便可以自由选择你所需要的解释器（环境）了。</p>
+<p><img src="/images/other/conda_in_vsc.png" alt="解释器"></p>
+<h2 id="结尾的一些碎碎念"><a href="#结尾的一些碎碎念" class="headerlink" title="结尾的一些碎碎念"></a>结尾的一些碎碎念</h2><p>正如大家所见，本文并不是一个介绍类的教程，同时也完全没有涉及到 Linux 平台。Python 开发可用的工具有很多，一篇文章也不可能介绍完，本文只介绍了最基础最通用的开发环境，能够满足大部分新手开发者的环境需求，但面对更加复杂的需求显然是不足的。之后有时间的话笔者也会发布一些其他 Python 开发工具和环境配置方面的教程，并会同步在这篇专栏下面。</p>
+<p>这里是 Well404，我们下篇文章再见！</p>
+<h3 id="虚拟环境的介绍与选择"><a href="#虚拟环境的介绍与选择" class="headerlink" title="虚拟环境的介绍与选择"></a>虚拟环境的介绍与选择</h3><p>文章中关于 conda 部分的介绍大部分来源于笔者之前发布的专栏，借此机会也更新了其中过时与描述不准的内容，可以作为拓展资料进行阅读。</p>
+<p><a href="http://blog.well404.top/2022/08/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/">一篇文章带你上手Conda、Poetry与Pdm，轻松搭建Python虚拟多版本复杂开发环境</a></p>
+
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5>本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "http://blog.well404.top/2023/02/28/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "http://blog.well404.top/2023/02/28/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/";
+            const title         = "「面对初学者的python开发环境配置」";
+            const excerpt       = `
+⚠警告受限于作者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 &#x77;&#101;&#108;&#108;&#x5f;&#x...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    
+                </div>
+                <div class="pull-date">
+                <span>最后编辑：2023-02-28</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" 一篇文章带你上手Conda、Poetry与Pdm，轻松搭建Python虚拟多版本复杂开发环境" href="/2022/08/17/虚拟环境/">&lt; 上一篇</a>
+            </div>
+            
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.webp" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center"></p>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix">
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar"></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%AF%B9%E5%88%9D%E5%AD%A6%E8%80%85%E7%9A%84python%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">面对初学者的python开发环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E7%AF%87%E5%85%88%E5%8F%A0%E7%94%B2"><span class="toc-text">开篇先叠甲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">编辑器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pycharm-or-VSCode"><span class="toc-text">Pycharm or VSCode?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VSCode-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">VSCode 的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VSCode-%E6%8F%92%E4%BB%B6"><span class="toc-text">VSCode 插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#conda-%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-text">conda 的选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda-%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-text">conda 的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows"><span class="toc-text">Windows</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-text">conda的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用conda创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E7%A7%BB%E9%99%A4%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用conda移除虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%97%E8%A1%A8"><span class="toc-text">查看conda虚拟环境列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用conda激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%80%E5%87%BAconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">退出conda虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda%E7%8E%AF%E5%A2%83%E5%86%85%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">conda环境内的使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-VSCode-%E4%B8%AD%E5%BA%94%E7%94%A8-Conda-%E7%8E%AF%E5%A2%83"><span class="toc-text">在 VSCode 中应用 Conda 环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E5%B0%BE%E7%9A%84%E4%B8%80%E4%BA%9B%E7%A2%8E%E7%A2%8E%E5%BF%B5"><span class="toc-text">结尾的一些碎碎念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E9%80%89%E6%8B%A9"><span class="toc-text">虚拟环境的介绍与选择</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NoneBot2%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/">NoneBot2系列教程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E6%9D%82%E8%B0%88/">Python杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E3%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E8%BD%AF%E8%B7%AF%E7%94%B1/">网络、服务器和软路由</a><span class="category-list-count">1</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/NoneBot2/" style="font-size: 0.6em;">NoneBot2</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2023/02/28/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><i class="fa  fa-book"></i> 面对初学者的python开发环境配置</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/08/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"><i class="fa  fa-book"></i> 一篇文章带你上手Conda、Poetry与Pdm，轻松搭建Python虚拟多版本复杂开发环境</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/05/09/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E5%9B%9B%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BA%BA%E5%AE%B6%E6%89%8D%E6%87%92%E5%BE%97%E7%90%86%E4%BD%A0%E5%91%A2/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第四节———人家才懒得理你呢</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/31/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E4%B8%89%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E4%BC%9A%E8%AF%B4%E8%AF%9D%E5%B0%B1%E5%A4%9A%E8%AF%B4%E7%82%B9/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第三节———会说话就多说点</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/03/25/%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85ikuai%E7%B3%BB%E7%BB%9F%E8%BF%9B%E8%A1%8CDHCP%E5%A4%9A%E6%8B%A8/"><i class="fa  fa-book"></i> 使用虚拟机安装ikuai系统进行DHCP多拨</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        
+                        <li><a href="mailto:well_404@outlook.com"><i class="fa fa-envelope"></i></a></li>
+                        
+                        
+                        
+                        
+                        
+                        <li><a target="_blank" rel="nofollow" href="https://github.com/well2333"><i class="fa fa-github"></i></a></li>
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2023 Well404的妙妙屋 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Well404.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="box theme-box" id="darkmode-switch">
+                        <span class="fa fa-adjust"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="https://unpkg.com/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+
+    <script async src="/js/candy.min.js"></script>
+
+
+
+
+    <script defer src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="https://unpkg.com/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+    <script defer src="/js/kr-dark.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

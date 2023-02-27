@@ -4,7 +4,7 @@
   <!-- 元数据 -->
   <meta charset="utf-8">
   <link rel="icon" href="/images/avatar.webp">
-  <title>一篇文章带你上手Poetry、Conda与Pdm，轻松搭建Python虚拟多版本复杂开发环境 | Well404的妙妙屋</title>
+  <title>一篇文章带你上手Conda、Poetry与Pdm，轻松搭建Python虚拟多版本复杂开发环境 | Well404的妙妙屋</title>
   <meta name="author" content="Well404" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,16 +15,16 @@
   
     <meta name="keywords" content="" />
   
-  <meta name="description" content="⚠警告受限于作者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 &amp;#119;&amp;#101;&amp;#x6c;&amp;#x6c;&amp;#95;&amp;#x34;&amp;#x30;&amp;#52;&amp;#x40;&amp;#x6f;&amp;#117;&amp;#116;&amp;#x6c;&amp;#x6f;&amp;#111;&amp;#x6b;&amp;#46;&amp;#x63;&amp;#111;&amp;#x6d">
+  <meta name="description" content="⚠警告受限于笔者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 &amp;#119;&amp;#x65;&amp;#108;&amp;#x6c;&amp;#x5f;&amp;#52;&amp;#48;&amp;#x34;&amp;#64;&amp;#x6f;&amp;#117;&amp;#116;&amp;#108;&amp;#111;&amp;#111;&amp;#107;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一篇文章带你上手Poetry、Conda与Pdm，轻松搭建Python虚拟多版本复杂开发环境">
+<meta property="og:title" content="一篇文章带你上手Conda、Poetry与Pdm，轻松搭建Python虚拟多版本复杂开发环境">
 <meta property="og:url" content="http://blog.well404.top/2022/08/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="Well404的妙妙屋">
-<meta property="og:description" content="⚠警告受限于作者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 &amp;#119;&amp;#101;&amp;#x6c;&amp;#x6c;&amp;#95;&amp;#x34;&amp;#x30;&amp;#52;&amp;#x40;&amp;#x6f;&amp;#117;&amp;#116;&amp;#x6c;&amp;#x6f;&amp;#111;&amp;#x6b;&amp;#46;&amp;#x63;&amp;#111;&amp;#x6d">
+<meta property="og:description" content="⚠警告受限于笔者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 &amp;#119;&amp;#x65;&amp;#108;&amp;#x6c;&amp;#x5f;&amp;#52;&amp;#48;&amp;#x34;&amp;#64;&amp;#x6f;&amp;#117;&amp;#116;&amp;#108;&amp;#111;&amp;#111;&amp;#107;&amp;#46;&amp;#99;&amp;#x6f;&amp;#x6d;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blog.well404.top/images/avatar.webp">
 <meta property="article:published_time" content="2022-08-17T14:45:00.000Z">
-<meta property="article:modified_time" content="2022-08-17T15:34:02.178Z">
+<meta property="article:modified_time" content="2023-02-27T19:19:29.654Z">
 <meta property="article:author" content="Well404">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://blog.well404.top/images/avatar.webp">
@@ -160,7 +160,7 @@
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center">一篇文章带你上手Poetry、Conda与Pdm，轻松搭建Python虚拟多版本复杂开发环境</h1>
+                <h1 class="kratos-entry-title text-center">一篇文章带你上手Conda、Poetry与Pdm，轻松搭建Python虚拟多版本复杂开发环境</h1>
             
             
             <ul class="kratos-post-meta text-center">
@@ -170,7 +170,7 @@
                     <i class="fa fa-edit"></i> 
                     
                     
-                        ~10.96K
+                        ~11.92K
                     
                     字
                 </li>
@@ -179,24 +179,98 @@
         </header>
         <div class="kratos-post-content">
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
-                本文最后编辑于 <time datetime="1660750442178"></time> 前，其中的内容可能需要更新。
+                本文最后编辑于 <time datetime="1677525569654"></time> 前，其中的内容可能需要更新。
             </div>
             
                 <div class="kratos-post-inner-toc">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#poetry"><span class="toc-number">1.</span> <span class="toc-text">poetry</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85poetry"><span class="toc-number">1.1.</span> <span class="toc-text">安装poetry</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.1.</span> <span class="toc-text">使用一键安装命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.2.</span> <span class="toc-text">手动拉取脚本进行安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8pip%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%8D%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">使用pip安装（不推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0poetry%E8%87%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.1.4.</span> <span class="toc-text">添加poetry至环境变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#poetry%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">poetry的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">创建新项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E5%8C%96%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">转化现有的项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E6%95%B4poetry%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.3.</span> <span class="toc-text">调整poetry设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.4.</span> <span class="toc-text">使用poetry创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.5.</span> <span class="toc-text">使用poetry激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">1.2.6.</span> <span class="toc-text">使用poetry安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.7.</span> <span class="toc-text">其他常用命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conda"><span class="toc-number">2.</span> <span class="toc-text">conda</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85conda"><span class="toc-number">2.1.</span> <span class="toc-text">安装conda</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows"><span class="toc-number">2.1.1.</span> <span class="toc-text">Windows</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-Ubuntu-Server-20-04-4"><span class="toc-number">2.1.2.</span> <span class="toc-text">Linux(Ubuntu Server 20.04.4)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">conda的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">2.2.1.</span> <span class="toc-text">使用conda创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E7%A7%BB%E9%99%A4%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">2.2.2.</span> <span class="toc-text">使用conda移除虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%97%E8%A1%A8"><span class="toc-number">2.2.3.</span> <span class="toc-text">查看conda虚拟环境列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">2.2.4.</span> <span class="toc-text">使用conda激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%80%E5%87%BAconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">2.2.5.</span> <span class="toc-text">退出conda虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda%E7%8E%AF%E5%A2%83%E5%86%85%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.6.</span> <span class="toc-text">conda环境内的使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pdm"><span class="toc-number">3.</span> <span class="toc-text">pdm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85pdm%E5%8F%8A%E5%85%B6%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">安装pdm及其基础使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#conda"><span class="toc-number">1.</span> <span class="toc-text">conda</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85conda"><span class="toc-number">1.1.</span> <span class="toc-text">安装conda</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows"><span class="toc-number">1.1.1.</span> <span class="toc-text">Windows</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-Ubuntu-Server-20-04-4"><span class="toc-number">1.1.2.</span> <span class="toc-text">Linux(Ubuntu Server 20.04.4)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">conda的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.1.</span> <span class="toc-text">使用conda创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E7%A7%BB%E9%99%A4%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.2.</span> <span class="toc-text">使用conda移除虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%97%E8%A1%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">查看conda虚拟环境列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.4.</span> <span class="toc-text">使用conda激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%80%E5%87%BAconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">1.2.5.</span> <span class="toc-text">退出conda虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda%E7%8E%AF%E5%A2%83%E5%86%85%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.6.</span> <span class="toc-text">conda环境内的使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#poetry"><span class="toc-number">2.</span> <span class="toc-text">poetry</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85poetry"><span class="toc-number">2.1.</span> <span class="toc-text">安装poetry</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="toc-number">2.1.1.</span> <span class="toc-text">使用一键安装命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.2.</span> <span class="toc-text">手动拉取脚本进行安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8pip%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%8D%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-number">2.1.3.</span> <span class="toc-text">使用pip安装（不推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0poetry%E8%87%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">2.1.4.</span> <span class="toc-text">添加poetry至环境变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#poetry%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">poetry的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.2.1.</span> <span class="toc-text">创建新项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E5%8C%96%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.2.2.</span> <span class="toc-text">转化现有的项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E6%95%B4poetry%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.3.</span> <span class="toc-text">调整poetry设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">2.2.4.</span> <span class="toc-text">使用poetry创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-number">2.2.5.</span> <span class="toc-text">使用poetry激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-number">2.2.6.</span> <span class="toc-text">使用poetry安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">2.2.7.</span> <span class="toc-text">其他常用命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pdm"><span class="toc-number">3.</span> <span class="toc-text">pdm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pdm-vs-poetry"><span class="toc-number">3.1.</span> <span class="toc-text">pdm vs poetry</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
                 </div>
             
             <hr />
             <blockquote>
-<p>⚠警告<br>受限于作者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 <a href="mailto:&#119;&#101;&#x6c;&#x6c;&#95;&#x34;&#x30;&#52;&#x40;&#x6f;&#117;&#116;&#x6c;&#x6f;&#111;&#x6b;&#46;&#x63;&#111;&#x6d;">&#119;&#101;&#x6c;&#x6c;&#95;&#x34;&#x30;&#52;&#x40;&#x6f;&#117;&#116;&#x6c;&#x6f;&#111;&#x6b;&#46;&#x63;&#111;&#x6d;</a> 以联系作者进行更正。</p>
+<p>⚠警告<br>受限于笔者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 <a href="mailto:&#119;&#x65;&#108;&#x6c;&#x5f;&#52;&#48;&#x34;&#64;&#x6f;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#x6d;">&#119;&#x65;&#108;&#x6c;&#x5f;&#52;&#48;&#x34;&#64;&#x6f;&#117;&#116;&#108;&#111;&#111;&#107;&#46;&#99;&#x6f;&#x6d;</a> 以联系笔者进行更正。</p>
 </blockquote>
 <p>文章开始前，那么聪明的你可能会有所疑问：“为什么要学多份虚拟环境管理工具？”实际上本文介绍的三者均是成熟的虚拟环境管理工具，并且都可以相互独立运行，但相对的各有各的专场以及不足。在文章中，我们将简要分析其基本用法以及其适应的领域，以帮助你在实际的开发中找到合适的虚拟化方案。</p>
+<h2 id="conda"><a href="#conda" class="headerlink" title="conda"></a>conda</h2><blockquote>
+<p>Package, dependency and environment management for any language—Python, R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN</p>
+</blockquote>
+<p>conda 相对于主流的虚拟环境管理工具，在 python 开发环境中最大的特点便是 “不需要安装python”。但请不要误会，这并不意味着 conda 不需要 python 来运行脚本，而是 conda 不会依赖于系统中已经存在的 python 进行运行。因此 conda 拥有较高的独立性以及强悍的跨版本支持，在多版本管理上，目前仍未出现能够击溃 conda 的存在。</p>
+<p>但与此同时，conda 对于虚拟环境的管理便显得非常“力大砖飞”，这也同样归功于其强大的跨版本支持上，通过 conda 可以轻松的在创建虚拟环境时仅需一个参数使用任意一个 python 版本，即便系统中不包含该版本的 python。但与之而来的便是其虚拟环境的实现方式极其暴力，<strong>每个虚拟环境中均包含了一个完整的 python</strong>，即便是在统一系统中已经有了该版本的 python 解释器也会创建一个新的解释器专供该环境使用。因此，conda 的虚拟环境实际上与主流的虚拟环境存在天壤之别。这也带来了 conda 最大的缺点之一——极度浪费磁盘空间。</p>
+<p>本质上，conda 的虚拟环境更像是对整个开发环境的虚拟，而不是 poetry 和 pdm 那种在解释器层面的虚拟，这是它原生支持多种编程语言的原因，也是一些科学计算、深度学习项目唯一指定的开发环境的原因。</p>
+<p>也正因如此，conda 相较于其他虚拟环境的管理器来说，其上手难度也相对更低一些，仅需要学会 创建环境、进入环境、退出环境、删除环境 即可轻松使用 conda 了，也就是四条指令的难度，因此对于刚入门的开发者来说，conda 相对于其他传统的虚拟环境也更加容易入门。</p>
+<p>因此，对于 conda 的使用，笔者个人看法是建议普通用户中 <strong>不理解传统虚拟环境使用方法的新手</strong> 以及 <strong>多版本开发者</strong> 进行使用，当然对于科学计算方面的开发者并没得选，而对于单版本多环境的开发者来说，poetry 或 pdm 是你更好的选择。</p>
+<blockquote>
+<p>conda的优势：简单易学、跨版本、独立性、兼容性极高、科学计算指定环境<br>conda的劣势：体积大、复用度低、实现原理“力大砖飞”</p>
+</blockquote>
+<h3 id="安装conda"><a href="#安装conda" class="headerlink" title="安装conda"></a>安装conda</h3><p>在版本选择方面，conda 提供了两种工具可供选择：anaconda 与 miniconda。</p>
+<p>关于二者的选择，可以参考<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/stable/user-guide/install/download.html#anaconda-or-miniconda">官方的描述</a>。</p>
+<p>anaconda 内置了大量的额外内容，例如大量科学计算、深度学习及数据分析相关的库。也正因如此其官方的推荐硬盘空间是3GB及以上，对于非相关领域的工笔者来说将会付出巨大的空间成本。因此我们将使用的工具实际上是 miniconda，而不是 anaconda。</p>
+<p>miniconda 相对于 anaconda 仅保留了虚拟环境相关的功能而去除了大量无关的内容，因此体积更小，官方推荐硬盘空间是500MB及以上，内容仅包含 conda、python、一些依赖以及较为常用的python第三方库例如 pip、zlib 等。</p>
+<p>miniconda 由于较为精简，相对于 anaconda 去掉了图形化的管理界面，因此对于“命令行恐惧症患者”来说也可以选择 anaconda 进行图形化操作。不过 conda 的使用方法极为简单，且 anaconda 的GUI界面实际上并不好用且非常卡（可能是用 Python 的UI库写的吧），笔者仍然建议使用 miniconda 与命令行工具进行操作。anaconda 与 miniconda 的命令行操作一致，在此将不会分别进行演示。</p>
+<blockquote>
+<p>conda     官方文档：<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/index.html">https://docs.conda.io/projects/conda/en/latest/index.html</a><br>Anaconda  官方网站：<a target="_blank" rel="noopener" href="https://www.anaconda.com/">https://www.anaconda.com/</a><br>Anaconda  下载地址：<a target="_blank" rel="noopener" href="https://www.anaconda.com/products/distribution#Downloads">https://www.anaconda.com/products/distribution#Downloads</a><br>miniconda 下载地址：<a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">https://docs.conda.io/en/latest/miniconda.html</a></p>
+</blockquote>
+<p>一般来说，较新的 conda 的 python 版本仅会影响 base 的环境，对于虚拟环境的使用差别并不大，因此我们仅需要下载对应的最新版并安装即可。</p>
+<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>在 miniconda下载地址 中选择合适的版本进行下载。64位用户可以直接<a target="_blank" rel="noopener" href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe">点击这里</a>下载最新版的安装包进行安装。</p>
+<p>由于 Windows 下的 miniconda 安装并无什么难度，基本上一路 next 就可以了，在此不进行演示。</p>
+<p><strong>千万不要将 miniconda 安装到任意一个Program Files路径下，此操作将会导致 conda 因权限问题无法使用</strong></p>
+<p>注意在安装前最后一步将 miniconda 添加至环境变量。</p>
+<p><img src="/images/other/install_conda.png" alt="安装conda"></p>
+<p>注意这四个选项一定要全部勾选！这里也推荐勾选第二项以方便在其他程序和终端中进行调用。</p>
+<h4 id="Linux-Ubuntu-Server-20-04-4"><a href="#Linux-Ubuntu-Server-20-04-4" class="headerlink" title="Linux(Ubuntu Server 20.04.4)"></a>Linux(Ubuntu Server 20.04.4)</h4><p>首先在官网选择合适的版本，并进行下载，然后运行下载好的安装脚本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span><br><span class="line">bash Miniconda3-latest-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+<p>然后，系统会弹出使用协议之类的东西，一直按回车键(或按Q跳过)直到显示 <code>Please answer &#39;yes&#39; or &#39;no&#39;:&#39;</code> 并输入 <code>yes</code> 同意协议。此时系统会询问安装路径，一般情况下会安装在当前用户 <code>home directory</code> 的 <code>miniconda</code> 文件夹中，也就是 <code>/home/username/miniconda</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Miniconda3 will now be installed into this location:</span><br><span class="line">/home/well404/miniconda3</span><br><span class="line"></span><br><span class="line">  - Press ENTER to confirm the location</span><br><span class="line">  - Press CTRL-C to abort the installation</span><br><span class="line">  - Or specify a different location below</span><br></pre></td></tr></table></figure>
+
+<p>一般情况下我们安装在此处即可，按回车键确认。此时便会开始安装，经过一小段时间的等待之后，我们便可以选择初始化 miniconda 了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Do you wish the installer to initialize Miniconda3</span><br><span class="line">by running conda init? [<span class="built_in">yes</span>|no]</span><br></pre></td></tr></table></figure>
+
+<p>输入 <code>yes</code> 后便完成了安装。不过此时 miniconda 并不在系统变量中，无法直接通过命令调用，体现为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">well404@ubuntu2004:~$ conda</span><br><span class="line">conda: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure>
+
+<p>此时查看该用户的 <code>.bsahrc</code> 文件（<code>cat ~/.bashrc</code>），我们可以看到其文件结尾处被添加了如下内容:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span></span><br><span class="line"><span class="comment"># !! Contents within this block are managed by &#x27;conda init&#x27; !!</span></span><br><span class="line">__conda_setup=<span class="string">&quot;<span class="subst">$(&#x27;/home/well404/miniconda3/bin/conda&#x27; &#x27;shell.bash&#x27; &#x27;hook&#x27; 2&gt; /dev/null)</span>&quot;</span></span><br><span class="line"><span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">eval</span> <span class="string">&quot;<span class="variable">$__conda_setup</span>&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> [ -f <span class="string">&quot;/home/well404/miniconda3/etc/profile.d/conda.sh&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        . <span class="string">&quot;/home/well404/miniconda3/etc/profile.d/conda.sh&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">export</span> PATH=<span class="string">&quot;/home/well404/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">unset</span> __conda_setup</span><br><span class="line"><span class="comment"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时，我们只需要重新加载 <code>.bsahrc</code> 或 <strong>重启终端</strong> 即可正常的导入环境变量了。输入 <code>source ~/.bashrc</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">well404@ubuntu2004:~$ <span class="built_in">source</span> ~/.bashrc</span><br><span class="line">(base) well404@ubuntu2004:~$ </span><br></pre></td></tr></table></figure>
+
+<p>此时我们注意到我们的用户名前多了一个 <code>(base)</code>，这便是 conda 激活了 <code>base</code> 环境（默认环境），此时查询版本信息等就是 miniconda 自带的 python 信息了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(base) well404@ubuntu2004:~$ python --version</span><br><span class="line">Python 3.9.12</span><br><span class="line">(base) well404@ubuntu2004:~$ pip --version</span><br><span class="line">pip 21.2.4 from /home/well404/miniconda3/lib/python3.9/site-packages/pip (python 3.9)</span><br></pre></td></tr></table></figure>
+
+<h3 id="conda的基础使用"><a href="#conda的基础使用" class="headerlink" title="conda的基础使用"></a>conda的基础使用</h3><p>我们来简单介绍一些基础的使用方法，更多指令与操作可以查询<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/user-guide/">官方文档</a>。</p>
+<h4 id="使用conda创建虚拟环境"><a href="#使用conda创建虚拟环境" class="headerlink" title="使用conda创建虚拟环境"></a>使用conda创建虚拟环境</h4><p>创建一个名为 <code>test</code> 的虚拟环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>创建一个名为 <code>test</code>，且python版本为 <code>3.8</code> 的虚拟环境的虚拟环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n <span class="built_in">test</span> python=3.8</span><br></pre></td></tr></table></figure>
+
+<p>从已有的虚拟环境 <code>test</code> 复制一份为 <code>test_copy</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n test_copy --<span class="built_in">clone</span> <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="使用conda移除虚拟环境"><a href="#使用conda移除虚拟环境" class="headerlink" title="使用conda移除虚拟环境"></a>使用conda移除虚拟环境</h4><p>移除一个名为 <code>test</code> 的虚拟环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n <span class="built_in">test</span> --all</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看conda虚拟环境列表"><a href="#查看conda虚拟环境列表" class="headerlink" title="查看conda虚拟环境列表"></a>查看conda虚拟环境列表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用conda激活虚拟环境"><a href="#使用conda激活虚拟环境" class="headerlink" title="使用conda激活虚拟环境"></a>使用conda激活虚拟环境</h4><p>激活一个名为 <code>test</code> 的虚拟环境。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>如果激活成功，在用户名前会有环境名的提示，例如：</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">Well404</span>&gt;<span class="title">conda</span> <span class="title">activate</span> <span class="title">sign</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">(<span class="title">sign</span>) <span class="title">C</span>:\<span class="title">Users</span>\<span class="title">Well404</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，Windows PowerShell 默认情况下<strong>无法直接</strong>激活 conda 虚拟环境，请务必在 Windows 系统中使用 cmd 进行操作或在 PowerShell 中使用 <code>conda init</code> 命令来初始化 conda 的配置。</p>
+<h4 id="退出conda虚拟环境"><a href="#退出conda虚拟环境" class="headerlink" title="退出conda虚拟环境"></a>退出conda虚拟环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，此命令不包含任何额外的参数。因为一个终端仅能同时激活一个虚拟环境，因此也没有必要指定取消激活的虚拟环境的环境名。</p>
+<h4 id="conda环境内的使用"><a href="#conda环境内的使用" class="headerlink" title="conda环境内的使用"></a>conda环境内的使用</h4><p>由于使用了一个虚拟环境，在这个虚拟环境激活时，我们可以正常的使用 Python 中的绝大部分命令与工具，同时 conda 也提供了一些指令，但在此就不过多阐述了。</p>
+<p>对于仅使用虚拟环境这一项功能的用户，我们可以直接使用正常操作 Python 的方式进行操作，例如使用 <code>pip</code> 安装第三方库，使用此环境下中 python 的命令行工具以及交互式编程等等，简而言之就是平时怎么用还怎么用，只要你的虚拟环境是激活的的状态，此环境内的改变是不会影响到其他无关的环境的。</p>
 <h2 id="poetry"><a href="#poetry" class="headerlink" title="poetry"></a>poetry</h2><p>作为一个传统虚拟环境的实现，poetry 凭借其强大的依赖分析能力被大量项目所推荐的虚拟环境管理工具。</p>
 <p>对于绝大部分的开发者而言，poetry 作为首选的虚拟环境管理工具是最优方案，其强大的依赖分析能力、环境封装能力以及庞大的社区均可为你的开发保驾护航，这也是我目前最为推荐所有 python 开发者所掌握的虚拟环境管理工具。</p>
 <blockquote>
 <p>poetry官方文档：<a target="_blank" rel="noopener" href="https://python-poetry.org/docs/">https://python-poetry.org/docs/</a><br>poetry项目仓库：<a target="_blank" rel="noopener" href="https://github.com/python-poetry/poetry">https://github.com/python-poetry/poetry</a></p>
 </blockquote>
-<p>对于 poetry 的使用，作者个人看法是建议 <strong>所有开发者</strong> 进行使用，其强大的性能足够满足绝大部分情况的需求（除非你还在使用远古版本的 python）。</p>
+<p>对于 poetry 的使用，笔者个人看法是建议 <strong>所有开发者</strong> 进行使用，其强大的性能足够满足绝大部分情况的需求（除非你还在使用远古版本的 python）。</p>
 <blockquote>
 <p>poetry的优势：分析能力极强、社区资源丰富、兼容性优秀、使用广泛<br>poetry的劣势：对老旧版本的python不兼容、略微复杂</p>
 </blockquote>
@@ -232,6 +306,7 @@
 <figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[tool.poetry]</span></span><br><span class="line"><span class="attr">name</span> = <span class="string">&quot;poetry-demo&quot;</span></span><br><span class="line"><span class="attr">version</span> = <span class="string">&quot;0.1.0&quot;</span></span><br><span class="line"><span class="attr">description</span> = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="attr">authors</span> = [<span class="string">&quot;Sébastien Eustace &lt;sebastien@eustace.io&gt;&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="section">[tool.poetry.dependencies]</span></span><br><span class="line"><span class="attr">python</span> = <span class="string">&quot;*&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[tool.poetry.dev-dependencies]</span></span><br><span class="line"><span class="attr">pytest</span> = <span class="string">&quot;^3.4&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>简单来说，我们可以把这个文件看作高级版的 <code>requirement.txt</code>，其中的信息会在创建项目的时候通过命令行的方式进行询问，因此根据你填入的信息不同，此文件的内容也不会完全相同。</p>
+<p>不过，由于 poetry 的诞生早于 <a target="_blank" rel="noopener" href="https://peps.python.org/pep-0621/">PEP621</a> 的提出，其构筑方法与之并不兼容，因此 poetry 与后续所提到的 pdm 虽然都是使用 <code>pyproject.toml</code> 存放项目信息但二者并不兼容！</p>
 <h4 id="转化现有的项目"><a href="#转化现有的项目" class="headerlink" title="转化现有的项目"></a>转化现有的项目</h4><p>转化一个名为 <code>pre-existing-project</code> 的项目：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> pre-existing-project</span><br><span class="line">poetry init</span><br></pre></td></tr></table></figure>
 
@@ -239,17 +314,19 @@
 <h4 id="调整poetry设置"><a href="#调整poetry设置" class="headerlink" title="调整poetry设置"></a>调整poetry设置</h4><p><a target="_blank" rel="noopener" href="https://python-poetry.org/docs/configuration/#virtualenvsin-project">官方文档</a></p>
 <p>通过 <code>poetry config --list</code> 命令，我们可以查看 poetry 的设置。</p>
 <p>通过 <code>poetry config</code> 命令，我们可以调节 poetry 的设置。例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">poetry config virtualenvs.create <span class="literal">false</span> --<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">poetry config virtualenvs.create <span class="literal">true</span></span><br><span class="line">poetry config virtualenvs.in-project <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
 <p>在此，我们简单了解两个配置项：<code>virtualenvs.create</code> 和 <code>virtualenvs.in-project</code></p>
-<p>当参数 <code>virtualenvs.create=true</code> 时，执行 <code>poetry install</code> 或 <code>poetry add</code> 时会检测当前项目是否有虚拟环境，没有就自动创建，默认为 <code>true</code>。</p>
-<p>当参数 <code>virtualenvs.in-project=true</code> 时，虚拟环境的依赖将会放置于项目的文件夹内，而不是 poetry 默认的 <code>&#123;cache-dir&#125;/virtualenvs</code>，默认为 <code>false</code>。</p>
-<p>通常情况下，我会将这两项均设置为 <code>true</code>，这将简化我们的工作流程，以及更加方便的管理项目与其依赖。</p>
-<h4 id="使用poetry创建虚拟环境"><a href="#使用poetry创建虚拟环境" class="headerlink" title="使用poetry创建虚拟环境"></a>使用poetry创建虚拟环境</h4><p>通常我们会设置 <code>virtualenvs.create=true</code> 并且直接使用 <code>poetry install</code> 等命令来直接自动创建虚拟环境，不过我们也可以通过 <code>poetry env use</code> 手动创建虚拟环境，或通过 <code>poetry env use 解释器路径</code> 来手动指定一个 python 解释器。</p>
+<p>当参数 <code>virtualenvs.create</code> 为 <code>true</code> 时，执行 <code>poetry install</code> 或 <code>poetry add</code> 时会检测当前项目是否有虚拟环境，没有就自动创建，默认为 <code>true</code>。</p>
+<p>当参数 <code>virtualenvs.in-project</code> 为 <code>true</code> 时，虚拟环境的依赖将会放置于项目的文件夹内，而不是 poetry 默认的 <code>&#123;cache-dir&#125;/virtualenvs</code>，默认为 <code>false</code>。</p>
+<p>通常情况下，笔者会将这两项均设置为 <code>true</code>，这将简化我们的工作流程，以及更加方便的管理项目与其依赖。</p>
+<h4 id="使用poetry创建虚拟环境"><a href="#使用poetry创建虚拟环境" class="headerlink" title="使用poetry创建虚拟环境"></a>使用poetry创建虚拟环境</h4><p>通常我们会设置 <code>virtualenvs.create=true</code> 并且直接使用 <code>poetry install</code> 等命令来直接自动创建虚拟环境，不过我们也可以通过 <code>poetry env use</code> 手动创建虚拟环境，或通过 <code>poetry env use &lt;解释器路径&gt;</code> 来手动指定一个 python 解释器。例如：</p>
+<p><code>poetry env use C:\Users\Well404\AppData\Local\Programs\Python\Python310\python.exe</code></p>
+<p>此命令便是使用了安装在<strong>默认路径</strong>的 Python3.10 解释器进行项目的创建。</p>
 <h4 id="使用poetry激活虚拟环境"><a href="#使用poetry激活虚拟环境" class="headerlink" title="使用poetry激活虚拟环境"></a>使用poetry激活虚拟环境</h4><p>我们可以通过 <code>poetry run 命令</code> 来直接在该项目的虚拟环境中执行命令，也可以通过 <code>poetry shell</code> 来显式激活这个虚拟环境。</p>
-<p>例如我们要运行这个虚拟环境中的 <code>main.py</code> 文件，便可使用 <code>poetry run python main.py</code> 或在 <code>poetry shell</code> 激活后直接输入 <code>python main.py</code>（注意 Linux 下要将 python 替换为 python3）。</p>
+<p>例如我们要运行这个虚拟环境中的 <code>main.py</code> 文件，便可使用 <code>poetry run python main.py</code> 或在 <code>poetry shell</code> 激活后直接输入 <code>python main.py</code>。</p>
 <h4 id="使用poetry安装依赖"><a href="#使用poetry安装依赖" class="headerlink" title="使用poetry安装依赖"></a>使用poetry安装依赖</h4><p>如果项目中已有 <code>pyproject.toml</code> 文件，可使用 <code>poetry install</code> 来直接安装其中所列出的依赖。<code>poetry install --no-dev</code> 参数以跳过 dev 使用的依赖，通常在部署项目时使用。</p>
-<p>使用 <code>poetry add</code> 可以在环境中安装新的依赖，例如 <code>poetry add numpy</code>，也可以一次性添加多个依赖 <code>poetry add requests pendulum</code>。</p>
+<p>使用 <code>poetry add &lt;package&gt;</code> 可以在环境中安装新的依赖，例如 <code>poetry add numpy</code>，也可以一次性添加多个依赖 <code>poetry add requests pendulum</code>。</p>
 <p>通过 <code>--dev</code> 参数可以指定为 dev 依赖，例如 <code>poetry add pytest --dev</code>。</p>
 <p>通过指定版本号也可限定依赖的版本范围，例如 <code>poetry add pendulum@^2.0.5</code> 或 <code>poetry add &quot;pendulum&gt;=2.0.5&quot;</code>。</p>
 <h4 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h4><p>更多命令以及详细信息可查看<a target="_blank" rel="noopener" href="https://python-poetry.org/docs/cli/">官方文档</a>中的介绍。</p>
@@ -258,78 +335,10 @@
 <p>查看可以更新的依赖 <code>poetry show --outdated</code></p>
 <p>查看项目安装的依赖 <code>poetry show</code></p>
 <p>以树形结构查看项目安装的依赖关系 <code>poetry show --tree</code></p>
-<h2 id="conda"><a href="#conda" class="headerlink" title="conda"></a>conda</h2><blockquote>
-<p>Package, dependency and environment management for any language—Python, R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN</p>
+<h2 id="pdm"><a href="#pdm" class="headerlink" title="pdm"></a>pdm</h2><blockquote>
+<p>本段内容最后编辑于 2023/02/28，无法保证您看到时内容依旧具有时效性，如果发现过时或错误的内容可以通过文章开头的邮箱联系作者进行修改。</p>
 </blockquote>
-<p>conda 相对于主流的虚拟环境管理工具，其最大的特点便是 “不需要安装python”。但请不要误会，这并不意味着 conda 不需要 python 来运行，而是 conda 不会依赖于系统中已经存在的 python 进行运行。因此 conda 拥有较高的独立性以及强悍的跨版本支持，在多版本管理上，目前仍未出现能够击溃 conda 的存在。</p>
-<p>但与此同时，conda 对于虚拟环境的管理便显得非常“蠢”，这也同样归功于其强大的跨版本支持上，通过 conda 可以轻松的在创建虚拟环境时仅需一个参数使用任意一个 python 版本，即便系统中不包含该版本的 python。但与之而来的便是其虚拟环境的实现方式极其暴力，<strong>每个虚拟环境中均包含了一个完整的 python</strong>，即便是在统一系统中已经有了该版本的 python 解释器也会创建一个新的解释器专供该环境使用。因此，conda 的虚拟环境实际上与主流的虚拟环境存在天壤之别。这也带来了 conda 最大的缺点之一——极度浪费磁盘空间。</p>
-<p>不过，也正因如此，conda 相较于其他虚拟环境的管理器来说，其上手难度也相对更低一些，仅需要学会 创建环境、进入环境、退出环境、删除环境 即可轻松使用 conda 了，也就是四条指令的难度，因此对于刚入门的开发者来说，conda 相对于其他传统的虚拟环境也更加容易入门。</p>
-<p>因此，对于 conda 的使用，作者个人看法是建议 <strong>不理解传统虚拟环境使用方法的新手</strong> 以及 <strong>多版本开发者</strong> 进行使用，而对于单版本多环境的开发者来说，poetry 或 pdm 是你更好的选择。</p>
-<blockquote>
-<p>conda的优势：简单易学、跨版本、独立性、兼容性极高<br>conda的劣势：体积大、复用度低、实现原理另类</p>
-</blockquote>
-<h3 id="安装conda"><a href="#安装conda" class="headerlink" title="安装conda"></a>安装conda</h3><p>在版本选择方面，conda 提供了两种工具可供选择：anaconda 与 miniconda。</p>
-<p>anaconda 内置了大量的额外内容，例如大量科学计算、深度学习及数据分析相关的库。也正因如此截止至撰稿日其Windows64位的最新版安装包体积已经达到了惊人的594M，解压后理论上将会更大，对于非相关领域的工作者来说将会付出巨大的空间成本。因此我们将使用的工具实际上是 miniconda，而不是 anaconda。</p>
-<p>miniconda 相对于 anaconda 仅保留了虚拟环境相关的功能而去除了大量无关的内容，因此体积更小，截止至撰稿日其Windows64位的最新版安装包仅71.2M，内容仅包含 conda、python、一些依赖以及较为常用的python第三方库例如 pip、zlib 等。</p>
-<p>miniconda 由于较为精简，相对于 anaconda 去掉了图形化的管理界面，因此对于“命令行恐惧症患者”来说也可以选择 anaconda 进行图形化操作。不过 conda 的使用方法极为简单，作者仍然建议使用 miniconda 与命令行工具进行操作。anaconda 与 miniconda 的命令行操作一致，在此将不会分别进行演示。</p>
-<blockquote>
-<p>conda     官方文档：<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/index.html">https://docs.conda.io/projects/conda/en/latest/index.html</a><br>Anaconda  官方网站：<a target="_blank" rel="noopener" href="https://www.anaconda.com/">https://www.anaconda.com/</a><br>Anaconda  下载地址：<a target="_blank" rel="noopener" href="https://www.anaconda.com/products/distribution#Downloads">https://www.anaconda.com/products/distribution#Downloads</a><br>miniconda 下载地址：<a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">https://docs.conda.io/en/latest/miniconda.html</a></p>
-</blockquote>
-<p>一般来说，较新的 conda 的 python 版本仅会影响 base 环境的对于虚拟环境的使用差别并不大，因此我们仅需要下载对应的最新版并安装即可。</p>
-<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p>在 miniconda下载地址 中选择合适的版本进行下载。64位用户可以直接<a target="_blank" rel="noopener" href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe">点击这里</a>下载最新版的安装包进行安装。</p>
-<p>由于 Windows 下的 miniconda 安装并无什么难度，基本上一路 next 就可以了，在此不进行演示。</p>
-<blockquote>
-<p>注意将 miniconda 添加至环境变量，以便调用。</p>
-</blockquote>
-<h4 id="Linux-Ubuntu-Server-20-04-4"><a href="#Linux-Ubuntu-Server-20-04-4" class="headerlink" title="Linux(Ubuntu Server 20.04.4)"></a>Linux(Ubuntu Server 20.04.4)</h4><p>首先在官网选择合适的版本，并进行下载，然后运行下载好的安装脚本。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh</span><br><span class="line">bash Miniconda3-latest-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
-
-<p>然后，系统会弹出使用协议之类的东西，一直按回车键(或按Q跳过)直到显示 <code>Please answer &#39;yes&#39; or &#39;no&#39;:&#39;</code> 并输入 <code>yes</code> 同意协议。此时系统会询问安装路径，一般情况下会安装在当前用户 <code>home directory</code> 的 <code>miniconda</code> 文件夹中，也就是 <code>/home/username/miniconda</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Miniconda3 will now be installed into this location:</span><br><span class="line">/home/well404/miniconda3</span><br><span class="line"></span><br><span class="line">  - Press ENTER to confirm the location</span><br><span class="line">  - Press CTRL-C to abort the installation</span><br><span class="line">  - Or specify a different location below</span><br></pre></td></tr></table></figure>
-
-<p>一般情况下我们安装在此处即可，按回车键确认。此时便会开始安装，经过一小段时间的等待之后，我们便可以选择初始化 miniconda 了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Do you wish the installer to initialize Miniconda3</span><br><span class="line">by running conda init? [<span class="built_in">yes</span>|no]</span><br></pre></td></tr></table></figure>
-
-<p>输入 <code>yes</code> 后便完成了安装。不过此时 miniconda 并不在系统变量中，无法直接通过命令调用，体现为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">well404@ubuntu2004:~$ conda</span><br><span class="line">conda: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure>
-
-<p>此时查看该用户的 <code>.bsahrc</code> 文件（<code>cat ~/.bashrc</code>），我们可以看到其文件结尾处被添加了如下内容:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span></span><br><span class="line"><span class="comment"># !! Contents within this block are managed by &#x27;conda init&#x27; !!</span></span><br><span class="line">__conda_setup=<span class="string">&quot;<span class="subst">$(&#x27;/home/well404/miniconda3/bin/conda&#x27; &#x27;shell.bash&#x27; &#x27;hook&#x27; 2&gt; /dev/null)</span>&quot;</span></span><br><span class="line"><span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">eval</span> <span class="string">&quot;<span class="variable">$__conda_setup</span>&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">if</span> [ -f <span class="string">&quot;/home/well404/miniconda3/etc/profile.d/conda.sh&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        . <span class="string">&quot;/home/well404/miniconda3/etc/profile.d/conda.sh&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">export</span> PATH=<span class="string">&quot;/home/well404/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">unset</span> __conda_setup</span><br><span class="line"><span class="comment"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span></span><br></pre></td></tr></table></figure>
-
-<p>此时，我们只需要重新加载 <code>.bsahrc</code> 即可正常的导入环境变量了。输入 <code>source ~/.bashrc</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">well404@ubuntu2004:~$ <span class="built_in">source</span> ~/.bashrc</span><br><span class="line">(base) well404@ubuntu2004:~$ </span><br></pre></td></tr></table></figure>
-
-<p>此时我们注意到我们的用户名前多了一个 <code>(base)</code>，这便是 conda 激活了 <code>base</code> 环境（默认环境），此时查询版本信息等就是 miniconda 自带的 python 信息了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(base) well404@ubuntu2004:~$ python --version</span><br><span class="line">Python 3.9.12</span><br><span class="line">(base) well404@ubuntu2004:~$ pip --version</span><br><span class="line">pip 21.2.4 from /home/well404/miniconda3/lib/python3.9/site-packages/pip (python 3.9)</span><br></pre></td></tr></table></figure>
-
-<h3 id="conda的基础使用"><a href="#conda的基础使用" class="headerlink" title="conda的基础使用"></a>conda的基础使用</h3><p>我们来简单介绍一些基础的使用方法，更多指令与操作可以查询<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/user-guide/">官方文档</a>。</p>
-<h4 id="使用conda创建虚拟环境"><a href="#使用conda创建虚拟环境" class="headerlink" title="使用conda创建虚拟环境"></a>使用conda创建虚拟环境</h4><p>创建一个名为 <code>test</code> 的虚拟环境。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<p>创建一个名为 <code>test</code>，且python版本为 <code>3.8</code> 的虚拟环境的虚拟环境。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n <span class="built_in">test</span> python=3.8</span><br></pre></td></tr></table></figure>
-
-<p>从已有的虚拟环境 <code>test</code> 复制一份为 <code>test_copy</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n test_copy --<span class="built_in">clone</span> <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="使用conda移除虚拟环境"><a href="#使用conda移除虚拟环境" class="headerlink" title="使用conda移除虚拟环境"></a>使用conda移除虚拟环境</h4><p>移除一个名为 <code>test</code> 的虚拟环境。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove -n <span class="built_in">test</span> --all</span><br></pre></td></tr></table></figure>
-
-<h4 id="查看conda虚拟环境列表"><a href="#查看conda虚拟环境列表" class="headerlink" title="查看conda虚拟环境列表"></a>查看conda虚拟环境列表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用conda激活虚拟环境"><a href="#使用conda激活虚拟环境" class="headerlink" title="使用conda激活虚拟环境"></a>使用conda激活虚拟环境</h4><p>激活一个名为 <code>test</code> 的虚拟环境。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<p>如果激活成功，在用户名前会有环境名的提示，例如：</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">C:\<span class="title">Users</span>\<span class="title">Well404</span>&gt;<span class="title">conda</span> <span class="title">activate</span> <span class="title">sign</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">(<span class="title">sign</span>) <span class="title">C</span>:\<span class="title">Users</span>\<span class="title">Well404</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>值得注意的是，截止至撰稿日，Windows PowerShell 中<strong>无法</strong>正常的激活 conda 虚拟环境，请务必在 Windows 系统中使用 cmd 进行操作而<strong>不是</strong> PowerShell 进行操作。</p>
-<h4 id="退出conda虚拟环境"><a href="#退出conda虚拟环境" class="headerlink" title="退出conda虚拟环境"></a>退出conda虚拟环境</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure>
-
-<p>值得注意的是，此命令不包含任何额外的参数。因为一个终端仅能同时激活一个虚拟环境，因此也没有必要指定取消激活的虚拟环境的环境名。</p>
-<h4 id="conda环境内的使用"><a href="#conda环境内的使用" class="headerlink" title="conda环境内的使用"></a>conda环境内的使用</h4><p>由于使用了一个虚拟环境，在这个虚拟环境激活时，我们可以正常的使用 Python 中的绝大部分命令与工具，同时 conda 也提供了一些指令，但在此就不过多阐述了。</p>
-<p>对于仅使用虚拟环境这一项功能的用户，我们可以直接使用正常操作 Python 的方式进行操作，例如使用 <code>pip</code> 安装第三方库，使用 poetry 或其他虚拟环境管理器（套娃），使用此环境下中 python 的命令行工具以及交互式编程等等，简而言之就是平时怎么用还怎么用，只要你的虚拟环境是激活的的状态，次环境内的改变是不会影响到其他无关的环境的。</p>
-<h2 id="pdm"><a href="#pdm" class="headerlink" title="pdm"></a>pdm</h2><p>提到 pdm，我们绕不开的一点便是 <a target="_blank" rel="noopener" href="https://peps.python.org/pep-0582/">PEP582</a>。在这个提案中，抛弃虚拟环境是其核心诉求。</p>
+<p>提到 pdm，我们绕不开的一点便是 <a target="_blank" rel="noopener" href="https://peps.python.org/pep-0582/">PEP582</a>。在这个提案中，抛弃虚拟环境是其核心诉求。</p>
 <blockquote>
 <p>This PEP proposes to add to Python a mechanism to automatically recognize a <code>__pypackages__</code> directory and prefer importing packages installed in this location over user or global site-packages. This will avoid the steps to create, activate or deactivate “virtual environments”. Python will use the <code>__pypackages__</code> from the base directory of the script when present.</p>
 </blockquote>
@@ -340,26 +349,34 @@
 <li>兼容公共依赖</li>
 <li>并不需要激活/关闭虚拟环境</li>
 </ol>
-<p>我们接下来介绍的 pdm 便是目前 PEP582 的完备实现。并且在此之上，pdm 的实现方式决定了其强大的多版本支持能力以及项目版本迁移能力。</p>
-<p>同时，pdm 的开发者 <a target="_blank" rel="noopener" href="https://github.com/frostming">Frost Ming</a> 是国人，并且在项目中添加了中文版的 <a target="_blank" rel="noopener" href="https://github.com/pdm-project/pdm/blob/main/README_zh.md">README</a>，因此我们可以较为轻松的上手这个项目。</p>
+<p>我们接下来介绍的 pdm 便是目前 PEP582 的实现，同时 pdm 也吸收了 <a target="_blank" rel="noopener" href="https://peps.python.org/pep-0517/">PEP517</a> 和 <a target="_blank" rel="noopener" href="https://peps.python.org/pep-0621/">PEP621</a>，相较于 poetry 在未来会有更强的兼容性。</p>
+<p>但 pdm 也并不局限于 PEP582，pdm 也<strong>同时</strong>支持传统的虚拟环境（virtualenv 和 venv），而这也是目前绝大多数用户使用 pdm 的方法，也是笔者推荐的使用方法。PEP582 所设想的环境管理仍未得到广泛的支持，因此笔者并不建议在任何生产环境中使用这项尚未成熟的方案。</p>
+<p>同时，pdm 的开发者 <a target="_blank" rel="noopener" href="https://github.com/frostming">Frost Ming</a> 是国人开发者，并且在项目中添加了中文版的 <a target="_blank" rel="noopener" href="https://github.com/pdm-project/pdm/blob/main/README_zh.md">README</a>，因此我们可以较为轻松的上手这个项目。</p>
 <blockquote>
 <p>pdm 官方文档（英文）：<a target="_blank" rel="noopener" href="https://pdm.fming.dev/latest/">https://pdm.fming.dev/latest/</a><br>pdm github地址      ：<a target="_blank" rel="noopener" href="https://github.com/pdm-project/pdm">https://github.com/pdm-project/pdm</a><br>Frost Ming 的博客   ：<a target="_blank" rel="noopener" href="https://frostming.com/">https://frostming.com/</a></p>
 </blockquote>
-<p>但不得不提的一点是，pdm 由于本质上并不是虚拟环境，因此在某些情况下会导致不兼容的问题，例如较为复杂的依赖的情况下 pdm 仍有可能会出现错误。个人认为短时间内 pdm 也无法替代传统的虚拟环境成为主流。</p>
-<p>因此，对于 pdm 的使用，作者个人看法是建议 <strong>新项目</strong>、<strong>依赖关系较为简单的项目</strong> 以及 <strong>支持pdm的项目</strong> 进行使用，而打败 poetry 等一众传统虚拟环境管理工具仍需要时间的沉淀。</p>
-<blockquote>
-<p>pdm的优势：PEP582支持、复用度高、版本迁移及多版本支持优秀<br>pdm的劣势：起步晚、兼容性较低、复杂环境解析能力较差、对老旧版本的python不兼容</p>
-</blockquote>
-<h3 id="安装pdm及其基础使用"><a href="#安装pdm及其基础使用" class="headerlink" title="安装pdm及其基础使用"></a>安装pdm及其基础使用</h3><p>在中文版的 <a target="_blank" rel="noopener" href="https://github.com/pdm-project/pdm/blob/main/README_zh.md">README</a> 中，作者已对安装及使用进行了详细的介绍，如果需要更多信息请参考文档。</p>
-<p>pdm 的很多设计思路源于 poetry，二者在使用方法上也较为相似，也可以参考 poetry 部分来理解 pdm 的使用方法。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们上述介绍的三个虚拟环境管理工具，作者对其观点为：</p>
+<p>虽然上文说了 pdm 这么多好话，但在笔者历时一个月的使用中发现了 pdm 仍然不适合刚入门的新手进行使用，同时老手也在部分情况下不得不使用其他虚拟环境管理工具来规避由 pdm 造成的 bug。</p>
+<h3 id="pdm-vs-poetry"><a href="#pdm-vs-poetry" class="headerlink" title="pdm vs poetry"></a>pdm vs poetry</h3><p>pdm 的设计思路和操作逻辑很大程度上来源于 poetry，因此我们可以把二者看为一条赛道上的竞争关系。笔者在这里将以个人的使用体验来比较一下 pdm 与 poetry 的差异。</p>
+<p>pdm 的优势：</p>
 <ul>
+<li>更加友好的用户体验，其cli设计相对 poetry 更加友好与美观（rich nb）</li>
+<li>对 PEP 的支持更加友好，更加符合 python 社区规范</li>
+<li>能够直接定位已安装的 python 解释器，不用像 poetry 一样需要自己寻找解释器的位置。</li>
+</ul>
+<p>pdm 的劣势：</p>
+<ul>
+<li>在使用过程中可能碰到非常离谱的bug（有些是测试不全导致的bug，例如<a target="_blank" rel="noopener" href="https://github.com/pdm-project/pdm/issues/1734">Issue1734</a>，但有一些你都不知道这怎么可能发生的bug，例如找不到VC++的环境）</li>
+<li>历史沉淀依然稀薄，用户数量并不多（这会导致现在使用很可能成为“第一个吃螃蟹的人”）</li>
+<li>在某些小问题上 pdm 的处理需要让开发者额外操心（例如需要手动将 .pdm.toml 加入.gitignore或删除等）</li>
+</ul>
+<p>虽然 pdm 拥有更美好的前景，但目前仍有不少bug需要修复，也有一些细节需要优化，与 poetry 相比在最重要的稳定性上仍略逊一筹。因此笔者在这里<strong>并不建议新手现在使用 pdm</strong>，但十分建议熟练的开发者更多的使用 pdm 并一起完善 pdm 生态。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们上述介绍的三个虚拟环境管理工具，笔者对其观点为：</p>
+<ul>
+<li>conda：非传统的实现，多版本python的首选，但不建议用于代替普通的虚拟环境（除非你硬盘很大）</li>
 <li>poetry：目前的主流，功能很强大，很长一段时间内不会过气</li>
-<li>conda：另类的实现，多版本python的首选，但不建议用于代替普通的虚拟环境（除非你硬盘很大）</li>
-<li>pdm：新起之秀，战未来，国人开发，但目前兼容性和适用面仍有所欠缺</li>
+<li>pdm：新起之秀，战未来，国人开发，但目前仍然不建议新手使用</li>
 </ul>
 <p>实际上，相对于学习 python 本身，python 的虚拟环境管理工具的难度都不是很高，并且我们也并不需要精通虚拟环境，仅需要知道如何安装，如何使用便足矣。</p>
-<p>对于新手的学习建议，个人首推仍是 poetry，如果有多版本开发的需求可以额外学习 conda，而对于学有余力的开发者可以尝试 pdm。</p>
 
         </div>
         
@@ -426,9 +443,9 @@
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "http://blog.well404.top/2022/08/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/";
-            const title         = "「一篇文章带你上手Poetry、Conda与Pdm，轻松搭建Python虚拟多版本复杂开发环境」";
+            const title         = "「一篇文章带你上手Conda、Poetry与Pdm，轻松搭建Python虚拟多版本复杂开发环境」";
             const excerpt       = `
-⚠警告受限于作者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 &#119;&#101;&#x6c;&#x6c;&#95;&#x3...`;
+⚠警告受限于笔者的知识储备与开发经验，文章中难免会出现错误或异想天开等不符合实际情况的暴论，请您谨慎甄别取用。如您发现错误结论或其他需要修改的问题，可发送电子邮件至 &#119;&#x65;&#108;&#x6c;&#x5f;&#5...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -450,7 +467,7 @@
                     
                 </div>
                 <div class="pull-date">
-                <span>最后编辑：2022-08-17</span>
+                <span>最后编辑：2023-02-28</span>
                 </div>
             </div>
         </footer>
@@ -462,6 +479,10 @@
                 <a title=" 【NoneBot2】第二章：基础插件编写指南第四节———人家才懒得理你呢" href="/2022/05/09/nonebot/【NoneBot2】第二章：基础插件编写指南第四节———人家才懒得理你呢/">&lt; 上一篇</a>
             </div>
             
+            
+            <div class="nav-next clearfix">
+                <a title=" 面对初学者的python开发环境配置" href="/2023/02/28/开发环境配置/">下一篇 &gt;</a>
+            </div>
             
         </nav>
     
@@ -503,14 +524,14 @@
         <span class="toc-progress-bar"></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#poetry"><span class="toc-text">poetry</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85poetry"><span class="toc-text">安装poetry</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="toc-text">使用一键安装命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-text">手动拉取脚本进行安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8pip%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%8D%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">使用pip安装（不推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0poetry%E8%87%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">添加poetry至环境变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#poetry%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-text">poetry的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="toc-text">创建新项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E5%8C%96%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="toc-text">转化现有的项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E6%95%B4poetry%E8%AE%BE%E7%BD%AE"><span class="toc-text">调整poetry设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用poetry创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用poetry激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">使用poetry安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">其他常用命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conda"><span class="toc-text">conda</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85conda"><span class="toc-text">安装conda</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows"><span class="toc-text">Windows</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-Ubuntu-Server-20-04-4"><span class="toc-text">Linux(Ubuntu Server 20.04.4)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-text">conda的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用conda创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E7%A7%BB%E9%99%A4%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用conda移除虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%97%E8%A1%A8"><span class="toc-text">查看conda虚拟环境列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用conda激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%80%E5%87%BAconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">退出conda虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda%E7%8E%AF%E5%A2%83%E5%86%85%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">conda环境内的使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pdm"><span class="toc-text">pdm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85pdm%E5%8F%8A%E5%85%B6%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-text">安装pdm及其基础使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#conda"><span class="toc-text">conda</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85conda"><span class="toc-text">安装conda</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Windows"><span class="toc-text">Windows</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux-Ubuntu-Server-20-04-4"><span class="toc-text">Linux(Ubuntu Server 20.04.4)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-text">conda的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用conda创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E7%A7%BB%E9%99%A4%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用conda移除虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%88%97%E8%A1%A8"><span class="toc-text">查看conda虚拟环境列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8conda%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用conda激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%80%E5%87%BAconda%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">退出conda虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#conda%E7%8E%AF%E5%A2%83%E5%86%85%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-text">conda环境内的使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#poetry"><span class="toc-text">poetry</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85poetry"><span class="toc-text">安装poetry</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="toc-text">使用一键安装命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E6%8B%89%E5%8F%96%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-text">手动拉取脚本进行安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8pip%E5%AE%89%E8%A3%85%EF%BC%88%E4%B8%8D%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="toc-text">使用pip安装（不推荐）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0poetry%E8%87%B3%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">添加poetry至环境变量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#poetry%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8"><span class="toc-text">poetry的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E9%A1%B9%E7%9B%AE"><span class="toc-text">创建新项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BD%AC%E5%8C%96%E7%8E%B0%E6%9C%89%E7%9A%84%E9%A1%B9%E7%9B%AE"><span class="toc-text">转化现有的项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B0%83%E6%95%B4poetry%E8%AE%BE%E7%BD%AE"><span class="toc-text">调整poetry设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用poetry创建虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E6%BF%80%E6%B4%BB%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">使用poetry激活虚拟环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8poetry%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="toc-text">使用poetry安装依赖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">其他常用命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pdm"><span class="toc-text">pdm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pdm-vs-poetry"><span class="toc-text">pdm vs poetry</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol>
     </div>
 </aside>
                 
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NoneBot2%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/">NoneBot2系列教程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E6%9D%82%E8%B0%88/">Python杂谈</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E3%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E8%BD%AF%E8%B7%AF%E7%94%B1/">网络、服务器和软路由</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/NoneBot2%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/">NoneBot2系列教程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python%E6%9D%82%E8%B0%88/">Python杂谈</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C%E3%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E8%BD%AF%E8%B7%AF%E7%94%B1/">网络、服务器和软路由</a><span class="category-list-count">1</span></li></ul>
   </aside>
 
 
@@ -533,7 +554,13 @@
         
           
           
-            <a class="list-group-item" href="/2022/08/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"><i class="fa  fa-book"></i> 一篇文章带你上手Poetry、Conda与Pdm，轻松搭建Python虚拟多版本复杂开发环境</a>
+            <a class="list-group-item" href="/2023/02/28/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/"><i class="fa  fa-book"></i> 面对初学者的python开发环境配置</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2022/08/17/%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83/"><i class="fa  fa-book"></i> 一篇文章带你上手Conda、Poetry与Pdm，轻松搭建Python虚拟多版本复杂开发环境</a>
             
           
         
@@ -556,11 +583,7 @@
           
         
           
-          
-            <a class="list-group-item" href="/2022/02/11/nonebot/%E3%80%90NoneBot2%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%EF%BC%9A%E5%9F%BA%E7%A1%80%E6%8F%92%E4%BB%B6%E7%BC%96%E5%86%99%E6%8C%87%E5%8D%97%E7%AC%AC%E4%BA%8C%E8%8A%82%E2%80%94%E2%80%94%E2%80%94%E5%90%AC%E5%BE%97%E8%A7%81%EF%BC%8C%E8%AF%B4%E5%BE%97%E5%87%BA/"><i class="fa  fa-book"></i> 【NoneBot2】第二章：基础插件编写指南第二节———听得见，说得出</a>
             
-          
-        
           
             
           
@@ -598,7 +621,7 @@
                     </ul>
                     <ul class="kratos-copyright">
                         <div>
-                            <li>&copy; 2022 Well404的妙妙屋 版权所有.</li>
+                            <li>&copy; 2023 Well404的妙妙屋 版权所有.</li>
                             <li>本站已运行<span id="span_dt">Loading...</span></li>
                         </div>
                         <div>
